@@ -1,0 +1,32 @@
+<!--userPoster.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
+<view class="news">
+	<image src="/images/news_banner.jpg"></image>
+</view>
+<block wx:for="{{web_messageData}}" wx:key="id">
+<view class="flexRowBetween">
+    <view class="mall_tlt">
+        <image src="/images/new_tlt.jpg"></image>
+        <view  class="mall_tlt_txt font28 color1 avoidOverflow">{{item.title}}</view>
+    </view>
+    <view bindtap="show" class="read" data-index="{{index}}">
+        <view class="font26 click_read">点击查看</view>
+        <view class="fiexd-cart"  style="background:#e71121" wx:if="{{item.relation.length=='0'}}">
+            <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+        </view>
+    </view>
+</view>
+</block>
+<view class="mask" wx:if="{{is_show}}" catchtouchmove="true" bindtap="mask">
+</view>
+<view class="get_code" wx:if="{{is_show}}"  catchtouchmove="true">
+    <view class="code_cont">
+        <view class="font32 color3" style="line-height: 120rpx;text-align: center;">
+        <view class="content ql-editor" >
+            <import src="../../wxParse/wxParse.wxml"/>
+            <template is="wxParse" data="{{wxParseData:web_messageData[web_index].content}}"/>
+        </view>
+        </view>
+        <button class="submit_info" bindtap="mask">确认</button>
+    </view>
+</view>

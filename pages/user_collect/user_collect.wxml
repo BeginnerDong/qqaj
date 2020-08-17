@@ -1,0 +1,22 @@
+<!--index3.wxml-->
+<block wx:for="{{web_mainData}}" wx:key="id">
+    <view class="product" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="{{item.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top avoidOverflow">{{item.title}}</view>
+                    <view class="font24 color9 avoidOverflow">{{item.description}}</view>
+                    <view class="font30 color6  flex" style="height:50%;">
+                        <view class="product_number color">¥{{item.price}}</view>
+                        <view class="product_price color"><view class="submit_info font28" data-id="{{item.id}}" bindtap="cancel">移除收藏</view></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</block>
+<view style="font-size:18px;color:#ff0000;margin-top:600rpx;text-align:center" wx:if="{{web_length=='0'}}">没有收藏任何商品~</view>

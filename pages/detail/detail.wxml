@@ -1,0 +1,251 @@
+<!--detail.wxml-->
+
+<wxs module="func" src="../../utils/func.wxs" />
+<view id="details">
+<view class="page-body banner">
+    <view class="page-section page-section-spacing swiper">
+      <swiper
+         autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
+        <block wx:for="{{web_mainData.bannerImg}}" wx:index="{{index}}">
+          <swiper-item>
+            <image src="{{item.url}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots"> 
+      <block wx:for="{{web_sliderData.mainImg}}" wx:key="index"> 
+        <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
+      </block> 
+    </view>
+    </view>
+</view>
+
+<view class="detail">
+	<view class="product_top">
+		<view class="font32 color6" >
+			{{web_mainData.title}}
+		</view>
+		<view class="font32 color6" >
+			{{web_mainData.description}}
+		</view>
+		<view class="price_sale flexRowBetween" style="margin-top: 20rpx;">
+			<view class="price_left flex">
+				<view class="price color">
+					￥{{web_skuData.price?web_skuData.price:web_mainData.price}}元
+				</view>
+				<view class="price color" style="font-size:12px;text-decoration:line-through">
+					(原价：{{web_skuData.o_price}}元)
+				</view>
+				<view  class="font24 color6" style="margin-left: 20rpx;">
+					销量:{{web_mainData.saleNum}}
+				</view>
+			</view>
+		</view>
+		
+	</view>
+<view class="group" wx:if="{{web_skuData.is_group=='1'}}">
+	<view class="w710 detail_text flex" style="height:78rpx;line-height: 78rpx;border-bottom:solid 1px #e0e0e0;">
+		<view class="font24 color6" style="width:90%">
+			{{web_orderData.length>0?'1':web_orderData.length}}人在拼单,可直接参与
+		</view>
+		<view class="next_page">
+			<image src="/images/next_page.jpg"></image>
+		</view>
+	</view>
+	<view class="w710">
+		<block wx:for="{{web_orderData}}" wx:key="id">
+			<view class="group_one flex" wx:if="{{index==0}}">
+				<view class="group_left">
+					<view class="user_img">
+	                  <image class="user_img" src="{{item.user[0].headImgUrl}}"></image>
+	                </view>
+				</view>
+				<view class="group_name font28 color6" style="width:25%">{{item.user[0].nickname}}</view>
+				<view class="group_number" style="width:50%">
+					<view class="font26 color3" >点击即可参与</view>
+				</view>
+				<view class="group_btn"  bindtap="showGroupMember" data-id="{{item.id}}" data-group_no="{{item.group_no}}" style="width:25%">
+					<view class="submit_info color1" >去拼单</view>
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
+	<view class="choose flexRowBetween" style="margin-top: 20rpx;">
+		<view class="choose_left font28" style="width:80%;overflow:hidden;">
+			活动介绍
+		</view>
+	</view>
+	<view class="choose flexRowBetween">
+		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
+			{{web_mainData.passage1}}
+		</view>	
+	</view>
+	<view class="choose flexRowBetween" style="border: none;">
+		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
+			{{web_mainData.passage2}}
+		</view>
+	</view>
+	<view class="detail_comment flexRowBetween">
+		<view class="detail  {{tabCurrent == 0?'detail_select':''}}" data-current="0" bindtap="select_this">
+			详情
+		</view>
+		<view class="comment {{tabCurrent == 1?'detail_select':''}}"  data-current="1" bindtap="select_this">
+			评价
+		</view>
+	</view>
+	<view class="detail_show w710">
+		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
+			<view class="content ql-editor" >
+	            <import src="../../wxParse/wxParse.wxml"/>
+	            <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
+	        </view>
+		</view>
+		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
+			<view class="good_com flexRowBetween">
+				<view class="comment_number">
+					评价({{web_totalMessage}})
+				</view>
+			</view>
+			<block wx:for="{{web_messageData}}">
+				<view class="comment_list ">
+					<view class="flexRowBetween" style="align-items:center;">
+						<view class="comment_user" style="display:flex;align-items:center;">
+							<view class="user_img">
+								<image src="{{item.user[0].headImgUrl}}"></image>
+							</view>
+							<view class="txts" style="height:58rpx;">
+								<view class="text1">{{item.user[0].nickname}}</view>
+								<view class="text2">{{item.create_time}}</view>
+							</view>
+						</view>
+					</view>
+					<view class="comment_cont">
+						{{item.content}}
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>
+<view class="{{isShow?'mask':''}}"></view>
+</view>
+<view id="buy">
+	<view class="buy_click">
+		<button class="consult" bindtap="onShareAppMessage"  open-type="share" style="line-height:normal">
+			<image src="/images/share.png"></image>
+			<view class="text1">分享</view>
+		</button>
+		<button class="consult collect" bindtap="collect" style="line-height:normal">
+			<image src="{{url}}"></image>
+			<view class="text1">收藏</view>
+		</button>
+		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time==0||web_skuData.start_time<web_nowTiem}}">
+			<button class="shoppingCart color1" bindgetuserinfo="selectModel" data-type="addCart"  open-type="getUserInfo" wx:if="{{web_skuData.is_group=='0'}}">
+				加入购物车
+			</button>
+			<button class="go_pay color1"  open-type="getUserInfo" bindgetuserinfo="{{web_skuData.is_group=='0'?'selectModel':(web_orderData.length>0?'showGroupMember':'goBuy')}}" data-type="buy" style="{{web_skuData.is_group=='0'?'':'width:100%'}}">
+				{{web_skuData.is_group=='0'?(web_category_id?'立即开团':'立即购买'):(web_orderData.length>0?'我要参团':'我要开团')}}
+			</button>
+			
+		</view>
+		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time>web_nowTiem}}">
+		
+			<button class="go_pay color1" style="width:100%">
+				活动未开始
+			</button>
+		</view>
+		<view class="go_buy flexRowBetween" wx:if="{{web_mainData.sku.length==0}}">
+		
+			<button class="go_pay color1" style="width:100%">
+				已售完
+			</button>
+		</view>
+	</view>
+</view>
+<view id="choose" style="{{isShow?'bottom:0':'bottom:-100%'}}">
+	<view style="padding:0 2.5%;position: relative;">
+		<view class="flexRowBetween pricity">
+			<view class="choose_pro">
+				<image src="{{web_skuData.mainImg[0].url}}"></image>
+			</view>
+			<view class="product_txt">
+				<view class="pro_name avoidOverflow" style="width:80%;">{{web_skuData.title}}</view>
+				<view class="pro_type avoidOverflow" style="width:80%;">
+					{{web_skuData.description}}
+				</view>
+				<view class="price_choose">
+				￥{{web_totalPrice?web_totalPrice:web_skuData.price}}
+				</view>
+			</view>
+			<view class="close" bindtap="close">
+			<image src="/images/close.jpg"></image>
+			</view>
+		</view>
+		<scroll-view scroll-Y style="height:260rpx;">
+		<block wx:for="{{web_labelData}}" wx:key="id">
+			<view  style="margin-top:20rpx;">
+				<view id="type">
+					<view class="pro_type">	
+						{{item.title}}
+					</view>
+					<view class="flexRowBetween" style="justify-content:flex-start;flex-wrap: wrap;">
+						<block wx:for="{{web_labelData[index].child}}" wx:key="id" wx:for-item="c_item">
+							<view class="pro_types" data-id="{{c_item.id}}" data-parentid="{{item.id}}"  
+							bindtap="{{func.inArray(c_item.id,web_choose_sku_item)!=-1?'chooseSku':''}}" 
+							style="{{func.inArray(c_item.id,web_choose_sku_item)==-1?'border:1px dashed  #e5e5e5;color:#e5e5e5;':(func.inArray(c_item.id,web_sku_item)!=-1?'border:1px solid #e5747c;color:#e5747c;':'')}}">
+								{{c_item.title}}
+							</view>
+						</block>
+					</view>
+				</view>
+			</view>
+		</block>
+		</scroll-view>
+		<view class="choose_number flexRowBetween">
+			<view class="number_txt">
+				数量
+			</view>
+			<view class="edit_number flexRowBetween">
+				<view class="minus"  data-type="-" bindtap="counter" data-id="{{web_skuData.id}}">-</view>
+				<input class="number" type="number" bindchange="bindManual" value="{{web_count}}" />
+				<view class="add" data-type="+" bindtap="counter" data-id="{{web_skuData.id}}">+</view>
+			</view>
+		</view>
+		
+	</view>	
+	<view bindtap="{{web_buttonType=='buy'?'goBuy':'addCart'}}" wx:if="{{web_skuData.stock>0}}">
+		<view class="shoppingCart"  style="width:100%;height:80rpx;line-height:80rpx;color:#fff;position:absolute;left:0;bottom:0;background: red;">
+			确    认
+		</view>
+	</view>
+	<view  wx:if="{{web_skuData.stock==0}}">
+		<view class="shoppingCart" style="width:100%;height:80rpx;line-height:80rpx;color:#fff;position:absolute;left:0;bottom:0;">
+			已售完
+		</view>
+	</view>
+</view>
+<view id="group2" wx:if="{{web_isShow}}"  catchtouchmove="true">
+	<view class="group1 group2">
+		<view class="close" bindtap="showGroupMember"><image src="/images/close_icon.png"></image></view>
+		<view class="font32 color3">参与{{web_groupData.user[0].nickname}}的拼团</view>
+		<view class="font28 color6" wx:if="{{web_groupData.standard>web_groupData.groupMember.length}}">还差<text>{{web_lessNum}}人</text>成团</view>
+		<view class="font28 color6" wx:else>已成团,{{web_groupData.groupMember.length}}人在参团</view>
+		<view class="group_member flexCenter;">
+			<view class="member">
+				<view class="member_cont">
+					<view class="group_leader font22 color1">拼主</view>
+					<view class="user_img">
+	                  <image class="user_img" src="{{web_groupData.user[0].headImgUrl}}"></image>
+	                </view>
+				</view>
+			</view>
+		</view>
+		
+		<button class="submit_info" bindtap="goJoin"  style="width:100%;margin:50rpx auto 0;{{web_isMember==true?'background-color:e5e5e5':''}}">参与拼团</button>
+
+	</view>
+</view>
+
+

@@ -1,0 +1,32 @@
+<!--index3.wxml-->
+<view class="product">
+    <view class="order_tlt w710 flexRowBetween ">
+        <view class="tlt_left" style="width:70%;">交易时间:{{web_mainData.create_time}}</view>
+        <view class="tlt_left tlt_right color"  style="width:30%;">等待收货</view>
+    </view>
+    <block wx:for="{{web_mainData.products}}" wx:key="id">
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="{{item.snap_product.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top avoidOverflow">{{item.snap_product.title}}</view>
+                    <view class="font24 color9  avoidOverflow">{{item.snap_product.description}}</view>
+                    <view class="font30 color6  flex" style="height:50%;">
+                        <view class="product_number">X{{item.count}}</view>
+                        <view class="product_price color">¥{{item.snap_product.price}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
+    快递公司:<text class="color9" style="margin-left: 20rpx;">{{web_mainData.passage3}}</text>
+</view>
+<view class="w710 font28 color3 flex" style="height:70rpx;border-bottom: solid 1px #e0e0e0">
+    <view class="font28 color9" style="width:24%;">快递单号:</view>
+    <view class="color9" style="width:45%;">{{web_mainData.express_info}}</view>
+    <view  bindtap="copyTBL" style="width:25%" class="font28 submit_info" wx:if="{{web_mainData.express_info}}">复制</view>
+</view>

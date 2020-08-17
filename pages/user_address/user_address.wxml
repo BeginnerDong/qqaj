@@ -1,0 +1,36 @@
+<!--index2.wxml-->
+<block wx:for="{{web_mainData}}" wx:key="id">
+<view class="manage flex" bindtap="choose" data-id="{{item.id}}" style="padding:0 5%;width:90%;">
+	<view class="manage_cont" style="width:95%">
+		<view class="user_address flex color3">
+			<view class="address_left color3">
+				{{item.name}}
+			</view>
+			<view class="address_right">
+				{{item.phone}}
+			</view>
+		</view>
+		<view class="avoidOverflow address_infor">{{item.province+item.city+item.country+item.detail}}</view>
+	</view>
+</view>
+<view class="w710 flex">
+	<view class="address_handle flex font28" >
+		<view class="handle_left flex  {{item.isdefault=='0'?'color':''}}" bindtap="{{item.isdefault=='0'?'updateAddress':''}}" data-id="{{item.id}}">
+			<image id="select_icon" src="{{item.isdefault=='0'?'/images/select.png':'/images/select-a.png'}}"></image><text class="{{item.isdefault=='0'?'color6':'color2'}}">{{item.isdefault=='0'?'设为默认地址':'默认地址'}}</text>
+		</view>
+		<view class="handle_right flexRowBetween">
+			<view class="edit flex" data-path="/pages/user_address_new/user_address_new?id={{item.id}}" bindtap="intoPath">
+				<image class="edit_icon" src="/images/edit.jpg"></image> 编辑
+			</view>
+			<view class="edit flex" data-id="{{item.id}}" bindtap="deleteAddress">
+				<image class="edit_icon" src="/images/del.jpg"></image> 删除
+			</view>
+		</view>
+	</view>
+</view>
+</block>
+
+
+<button class="submit_info"  bindtap="intoPath" data-path="/pages/user_address_new/user_address_new" >添加新地址</button>
+
+

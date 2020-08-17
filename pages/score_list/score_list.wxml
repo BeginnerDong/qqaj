@@ -1,0 +1,19 @@
+<!--userPoster.wxml-->
+<view class="w710">
+	<view id="sort" class="flex">
+		<view class="search flex">
+			<input placeholder="搜索商品名称" class="font28"></input>
+		</view>
+	</view>
+</view>
+<view class="w710 flexRowBetween" style="flex-wrap: wrap;">
+  <block wx:for="{{web_mainData}}" wx:key="id">
+    <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/score_detail/score_detail?id={{item.id}}">
+        <image src="{{item.mainImg[0].url}}"></image>
+        <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
+        <view class="product_pro font28 flex">
+          <view class="color price">{{item.price}}积分</view>
+        </view>
+    </view>
+  </block>
+ </view>

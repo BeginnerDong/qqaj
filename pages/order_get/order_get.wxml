@@ -1,0 +1,78 @@
+<!--index3.wxml-->
+<view class="product">
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="product_box w710 flexRowBetween">
+            <view class="product_left">
+                <image src="{{item.product.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right" style="width:72.5%">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top avoidOverflow">{{item.product.title}}</view>
+                    <view class="font24 color9 product_top  avoidOverflow">{{item.product.description}}</view>
+                    <view class="product_top flex">
+                        <view class="font30 color6 product_number">X{{item.count}}</view>
+                        <view class="font30 product_price color">¥{{item.product.price}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="main">
+    <view class="input_list1 font28 flex w710">
+        <view class="input_before1">联系人:</view>
+        <input placeholder="请输入姓名" data-key="name" bindblur="changeBind" value="{{web_submitData.name}}"></input>
+    </view>
+    <view class="w710 input_list1 font28 flex">
+        <view class="input_before1">联系电话:</view>
+        <input placeholder="请输入联系电话" data-key="phone" bindblur="changeBind" value="{{web_submitData.phone}}"></input>
+    </view>
+ 
+    <view class="user_message w710">
+        <view class="font28" style="display: flex;align-items: center;">
+            <view class="input_before1">买家留言:</view>
+            <textarea placeholder="输入买家留言" data-key="message" auto-height="true" bindblur="changeBind" value="{{web_submitData.message}}"></textarea>
+        </view>
+    </view>
+    <view class="w710 discount" wx:if="{{web_mainData[0].product.is_group=='0'}}">
+    <view class="address_infor flex" bindtap="intoPath" data-path="/pages/user_discount/user_discount" style="height:70rpx;">
+        <view class="infor_right avoidOverflow font28 color6" style="width:80%;padding: 0;">优惠券抵扣</view>
+        <view class="infor_left flexRowBetween font28" style="width:20%;text-align:right;"><text class="color">-¥{{web_couponPrice}}</text><image src="/images/next_page.png" class="next_img"></image></view>
+    </view>
+  
+</view>
+</view>
+<view class="font30 color3 w710 note_get">请选择自提点</view>
+
+<view class="product">
+    <block wx:for="{{web_labelData}}" wx:key="id" >
+        <view class="product_box w710 flexRowBetween" style="margin-bottom:20rpx;" bindtap="chooseStore" data-id="{{item.id}}">
+            <view class="product_left">
+                <image src="{{item.mainImg[0].url}}"></image>
+            </view>
+            <view class="product_right">
+                <view class="product_detail">
+                    <view class="font32 color3 product_top  avoidOverflow">{{item.title}}</view>
+                    <view class="font24 color9 product_top  avoidOverflow">地址：{{item.description}}</view>
+            		<view class="font24 color9 product_top  avoidOverflow">联系电话：{{item.url}}</view>
+                </view>
+            </view>
+            <view class="product_bottom" >
+                <image  src="{{web_submitData.storeId==item.id?'/images/select-a.png':'/images/select.png'}}"></image>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="mask" wx:if="{{is_show}}" catchtouchmove="true" bindtap="mask">
+</view>
+<view class="get_code" wx:if="{{is_show}}"  catchtouchmove="true">
+    <view class="code_cont">
+        <view class="font32 color3" style="height:120rpx;line-height: 120rpx;text-align: center;">取货码：{{web_code}}</view>
+        <button class="submit_info" bindtap="intoPathRedi" data-path="/pages/user_order/user_order">确认</button>
+    </view>
+</view>
+<view style="width:100%;height:120rpx;"></view>
+<view class="confirm_btn flex font30">
+   <view class="confirm_left color">合计: ¥{{web_totalPrice}}</view> 
+   <view class="confirm_right color1 bg" bindtap="addOrder">提交订单</view> 
+</view>

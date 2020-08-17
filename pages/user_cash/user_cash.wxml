@@ -1,0 +1,37 @@
+<!--index3.wxml-->
+<view class="tab font30 flexRowBetween color6">
+    <view class="tab_item " data-num="0" bindtap="{{!buttonClicked?'menuClick':''}}">
+        <text class="{{num == 0?'tab_this':''}}">全部</text>
+    </view>
+    <view class="tab_item " data-num="1" bindtap="{{!buttonClicked?'menuClick':''}}">
+        <text class="{{num == 1?'tab_this':''}}">待审核</text>
+    </view>
+    <view class="tab_item" data-num="2" bindtap="{{!buttonClicked?'menuClick':''}}">
+        <text class="{{num == 2?'tab_this':''}}">已完成</text>
+    </view>
+    <view class="tab_item" data-num="3" bindtap="{{!buttonClicked?'menuClick':''}}">
+        <text class="{{num == 3?'tab_this':''}}">已失败</text>
+    </view>
+</view>
+<view class="credit_cont">
+    <block wx:for="{{web_mainData}}" wx:key="id">
+        <view class="credit_list">
+            <view class="credit_item">
+                <view class="credit_left">
+                    <view class="credit_reson font28">
+                        {{item.trade_info}}
+                    </view>
+                    <view class="credit_dates font24 color9">
+                       {{item.create_time}}
+                    </view>
+                </view>
+                <view class="credit_right font28 {{item.count>0?'color':''}}">
+                    {{item.count}}
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+<view class="cash_button bg font30 color1" bindtap="intoPath" data-path="/pages/userCashNow/userCashNow">
+    立即提现
+</view>

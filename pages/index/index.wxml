@@ -1,0 +1,243 @@
+<!--index.wxml-->
+<wxs module="func" src="../../utils/func.wxs" />
+<!-- <view class="swiper" style="height:80rpx">
+  <image src="{{web_adData.mainImg[0].url}}"></image>
+</view> -->
+<view class="page-body">
+    <view class="page-section page-section-spacing swiper">
+      <swiper
+         autoplay="{{autoplay}}" circular="{{circular}}" vertical="{{vertical}}"
+        interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px" bindchange="swiperChange">
+        <block wx:for="{{web_sliderData}}" wx:index="{{index}}" wx:key="id">
+          <swiper-item>
+            <image src="{{item.mainImg[0].url}}" data-path="{{item.url}}" bindtap="intoPath"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots"> 
+        <block wx:for="{{web_sliderData.mainImg}}" wx:key="index"> 
+          <view class="dot{{index == swiperIndex ? ' active' : ''}}"></view> 
+        </block> 
+      </view>
+    </view>
+</view>
+<view class="w710" style="background: #fff7f7;">
+    <view id="marquee" class="flexRowBetween" data-path="/pages/user_news/user_news" bindtap="intoPath">
+      <view class="horn"><image src="/images/horn.png"></image></view>
+      <view class="marquee_right">
+		<view class="marquee_container" style="--marqueeWidth--:{{marqueeW}};--allTs--:{{allT}};">
+			<view class="marquee_text" style="font-size:{{size}}px;height:72rpx;line-height: 72rpx;">{{web_messageData.title}}</view>
+		</view>
+      </view>
+			
+  </view>
+	
+</view>
+<view class="great flex">
+    <view class="great_left flex" bindtap="intoPath" data-path="/pages/todayGroup/todayGroup">
+			<view class="recommend_left product_item" style="width:100%;margin-bottom: 0;position: relative;">
+				<image src="../../images/home-icon9.png" style="position: absolute;top: 0;left:0;width:95rpx;height:90rpx;margin: 0;"></image>
+			    <image src="{{web_groupData[0].mainImg[0].url}}" style="margin: 0;"></image>
+			    <view class="product_name1 font30 avoidOverflow">{{web_groupData[0].title}}</view>
+			    <view class="product_pro font28 flex" >
+			      <view class="color price" style="width:100%">¥{{web_groupData[0].price}}</view>
+			    </view>
+			    <view class="product_pro font28 flex">
+			      <view class="color6 price font22">销量:{{web_groupData[0].product.saleNum}}</view>
+			      <!-- <view class="color6 font22 time">结束时间:{{func.timestampToTime(web_groupData[0].deadline)}}</view> -->
+			    </view>
+			</view>
+   <!--   <view class="left_cont">
+        <view class="color">
+            <view class="group flex">
+                <view class="group_left color" style="font-size:30rpx">今日团购</view>
+                <view class="group_right flexRowBetween">
+                  <view class="time1">{{web_day}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_hour}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_minute}}</view> <view  class="time_center flex">:</view>
+                  <view class="time1">{{web_second}}</view>
+                </view>
+            </view>
+        </view>
+        <image src="{{web_groupData[0].mainImg[0].url}}"></image>
+        <view class="font28"><text class="font24 color6"></text>{{web_groupData[0].title}}<text class="color font30"> ¥{{web_groupData[0].price}}</text></view>
+      </view> -->
+    </view>
+		 <view class="great_left flex" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].id}}">
+			 <view class="recommend_left product_item" style="width:100%;margin-bottom: 0;position: relative;">
+			 	<image src="../../images/home-icon10.png" style="position: absolute;top: 0;left:0;width:95rpx;height:90rpx;margin: 0;"></image>
+			     <image src="{{web_groupData[1].mainImg[0].url}}" style="margin: 0;"></image>
+			     <view class="product_name1 font30 avoidOverflow">{{web_groupData[1].title}}</view>
+			     <view class="product_pro font28 flex" >
+			       <view class="color price" style="width:100%">¥{{web_groupData[1].price}}</view>
+			     </view>
+			     <view class="product_pro font28 flex">
+			       <view class="color6 price font22">销量:{{web_groupData[1].product.saleNum}}</view>
+			       <!-- <view class="color6 font22 time">结束时间:{{func.timestampToTime(web_groupData[1].deadline)}}</view> -->
+			     </view>
+			 </view>
+		<!--   <view class="left_cont">
+		     <view class="color">
+		         <view class="group flex">
+		             <view class="group_left color" style="font-size:30rpx">今日团购</view>
+		             <view class="group_right flexRowBetween">
+		               <view class="time1">{{web_day}}</view> <view class="time_center flex">:</view>
+		               <view class="time1">{{web_hour}}</view> <view class="time_center flex">:</view>
+		               <view class="time1">{{web_minute}}</view> <view  class="time_center flex">:</view>
+		               <view class="time1">{{web_second}}</view>
+		             </view>
+		         </view>
+		     </view>
+		     <image src="{{web_groupData[0].mainImg[0].url}}"></image>
+		     <view class="font28"><text class="font24 color6"></text>{{web_groupData[0].title}}<text class="color font30"> ¥{{web_groupData[0].price}}</text></view>
+		   </view> -->
+		 </view>
+<!--    <view class="great_right">
+      <view class="great_top" style="border-bottom: solid 1px #e0e0e0" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[1].id}}">
+        <view class="right_top flex">
+          <view class="great_tLeft avoidOverflow">
+              <view class="font30" style="color:#ff9b0e;">{{web_groupData[1].title}}</view>
+              <view class="font26 color6" style="font-weight: 700">¥{{web_groupData[1].price}}</view>
+          </view>
+          <view class="great_tRight flex">
+              <image src="{{web_groupData[1].mainImg[0].url}}"></image>
+          </view>
+        </view>
+        <view class="right_bottom">
+            <view class="group flex" style="justify-content:center">
+                <view class="group_right flexRowBetween">
+                  <view class="time1">{{web_day1}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_hour1}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_minute1}}</view> <view  class="time_center flex">:</view>
+                  <view class="time1">{{web_second1}}</view>
+                </view>
+            </view>
+        </view>
+      </view>
+      <view class="great_top" bindtap="intoPath" data-path="/pages/detail/detail?id={{web_groupData[2].id}}">
+        <view class="right_top flex">
+          <view class="great_tLeft avoidOverflow">
+              <view class="font30" style="color:#ff9b0e;">{{web_groupData[2].title}}</view>
+              <view class="font26 color6" style="font-weight: 700">¥{{web_groupData[2].price}}</view>
+          </view>
+          <view class="great_tRight flex">
+              <image src="{{web_groupData[2].mainImg[0].url}}"></image>
+          </view>
+        </view>
+        <view class="right_bottom">
+            <view class="group flex" style="justify-content:center">
+                <view class="group_right flexRowBetween">
+                  
+                  <view class="time1">{{web_day2}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_hour2}}</view> <view class="time_center flex">:</view>
+                  <view class="time1">{{web_minute2}}</view> <view  class="time_center flex">:</view>
+                  <view class="time1">{{web_second2}}</view>
+         
+                </view>
+            </view>
+        </view>
+      </view>
+    </view> -->
+</view>
+<view class="menu flexRowBetween font30 color6" wx:if="{{web_sliderData[0].url!='001'}}">
+  <block wx:for="{{web_labelData}}" wx:key="id">
+    <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30?'/pages/group_list/group_list?id='+item.id:(item.id==34?'/pages/oldGroup/oldGroup?id='+item.id:'/pages/product_list/product_list?id='+item.id)}}" wx:if="{{item.id!=38}}">
+      <view><image src="{{item.mainImg[0].url}}"></image></view>
+      <view class="font24" style="color: #000000;">{{item.title}}</view>
+    </view>
+  </block>
+</view>
+
+<view class="w710" style="background: #f7f7f7;margin-top: 20rpx;padding-top:30rpx;padding-bottom: 40rpx;">
+    <view class="mall_tlt">
+        <image src="/images/tlt_bg.png"></image>
+        <view  class="mall_tlt_txt font30 color3">优惠大厅</view>
+    </view>
+  <view class="recommend1 flexRowBetween" >
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount" >
+        <image src="/images/home-icon11.png" class="img_bg" ></image>
+        <view class="activty flex" >
+          <view class="activty_cont flex">
+            <view class="activty_left">
+              <image src="/images/discount_icon1.png"></image>
+            </view>
+            <view class="activty_right">
+               <view class="font32 color1">优惠券</view>
+               <view class="font24 member_in color1">积分兑换优惠券</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/freeDiscount/freeDiscount" >
+        <image src="/images/home-icon12.png" class="img_bg" ></image>
+        <view class="activty flex" >
+          <view class="activty_cont flex">
+            <view class="activty_left">
+              <image src="/images/discount_icon1.png"></image>
+            </view>
+            <view class="activty_right">
+               <view class="font32 color1">优惠券</view>
+               <view class="font24 member_in color1">免费领取优惠券</view>
+            </view>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>
+<view class="content_box w710 bg1">
+        <view class="title flex">
+            <view class="mall_tlt">
+                <image src="/images/tlt_bg.png"></image>
+                <view  class="mall_tlt_txt font30 color3">限时抢购区</view>
+            </view>
+            <view class="more font28 flex" bindtap="intoPath" data-path="/pages/product_list/product_list">更多</view>
+        </view>
+        <view class="flexRowBetween" style="flex-wrap: wrap">
+          <block wx:for="{{web_mainData}}" wx:key="id">
+            <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}" wx:if="{{item.is_group==0}}">
+                <image src="{{item.mainImg[0].url}}"></image>
+                <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
+                <view class="product_pro font28 flex" >
+                  <view class="color price" style="width:100%">¥{{item.price}}</view>
+                </view>
+                <view class="product_pro font28 flex">
+                  <view class="color6 price font22">销量:{{item.product.saleNum}}</view>
+                  <view class="color6 font22 time">结束时间:{{func.timestampToTime(item.deadline)}}</view>
+                </view>
+            </view>
+          </block>
+        </view>
+</view>
+
+<view style="width:100%;height:120rpx;"></view>
+<view class="navbar">
+    <view class="navbar_item">
+        <view class="nav_img">
+          <image src="/images/navbar1-a.png"></image>
+        </view>
+        <view class="text this-text">首页</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/waitGoods/waitGoods">
+        <view class="nav_img">
+           <image src="/images/navbar2.png"></image>
+        </view>
+        <view class="text">待收货</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/shopping/shopping">
+        <view class="nav_img">
+           <image src="/images/navbar3.png"></image>
+        </view>
+        <view class="text">购物车</view>
+    </view>
+    <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/user/user">
+        <view class="nav_img">
+          <view class="cart_number" wx:if="{{web_readData.total_num>web_readData.total_read_num}}">
+              <view class="fiexd-cart"  style="background:#e71121">
+                  <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;"></view>
+              </view>
+          </view>
+          <image src="/images/navbar4.png"></image>
+        </view>
+        <view class="text">我的</view>
+    </view>
+</view>

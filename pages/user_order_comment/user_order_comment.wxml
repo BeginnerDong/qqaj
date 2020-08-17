@@ -1,0 +1,30 @@
+<!--index3.wxml-->
+<view class="product">
+    <view class="order_tlt w710 flexRowBetween ">
+        <view class="tlt_left">交易时间:{{web_mainData.create_time}}</view>
+    </view>
+    <view class="product_box w710 flexRowBetween">
+        <view class="product_left">
+            <image src="{{web_mainData.mainImg[0].url}}"></image>
+        </view>
+        <view class="product_right">
+            <view class="product_detail">
+                <view class="font32 color3 product_top avoidOverflow">{{web_mainData.title}}</view>
+                <view class="font24 color9">{{web_mainData.products[0].snap_product.description}}</view>
+                <view class="font30 color6  flex" style="height:50%;">
+                    <view class="product_number">X{{web_mainData.count}}</view>
+                    <view class="product_price color">¥{{web_mainData.price}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="w710 comment">
+    <view class="font28 color3" style="height:70rpx;line-height: 70rpx;">
+        填写评价
+    </view>
+    <textarea placeholder="请你对这次交易做出评价" class="font28 color6" data-key="content" bindinput="changeBind">
+        
+    </textarea>
+</view>
+<button class="submit_info" bindtap="submit">提交</button>
