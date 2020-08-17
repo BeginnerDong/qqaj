@@ -1,0 +1,8 @@
+<view class="item">
+	<image src="/images/phone.png"></image>
+	<view class="font32">15263485792</view>
+</view>
+<view style="padding-top: 150rpx;width: 100%;">
+	<view style="font-size: 36rpx;font-weight: bold;text-align: center;padding: 40rpx;">扫描平台二维码联系我们</view>
+	<image src="/images/ewm.jpg" style="margin: 0 125rpx;height: 500rpx;width: 500rpx;"></image>
+</view>

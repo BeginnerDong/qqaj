@@ -23,7 +23,7 @@
 
 <view class="detail">
 	<view class="product_top">
-		<view class="font32 color6" >
+		<view class="color6" style="font-size: 34rpx;font-weight: bold;" >
 			{{web_mainData.title}}
 		</view>
 		<view class="font32 color6" >
@@ -35,7 +35,7 @@
 					￥{{web_skuData.price?web_skuData.price:web_mainData.price}}元
 				</view>
 				<view class="price color" style="font-size:12px;text-decoration:line-through">
-					(原价：{{web_skuData.o_price}}元)
+					(市场价：{{web_skuData.o_price}}元)
 				</view>
 				<view  class="font24 color6" style="margin-left: 20rpx;">
 					销量:{{web_mainData.saleNum}}
@@ -83,18 +83,18 @@
 		</view>	
 	</view>
 	<view class="choose flexRowBetween" style="border: none;">
-		<view class="choose_left  font28" style="width:80%;overflow:hidden;">
+		<view class="choose_left  font28" style="width:80%;overflow:hidden;color: #222;">
 			{{web_mainData.passage2}}
 		</view>
 	</view>
-	<view class="detail_comment flexRowBetween">
+	<!-- <view class="detail_comment flexRowBetween">
 		<view class="detail  {{tabCurrent == 0?'detail_select':''}}" data-current="0" bindtap="select_this">
 			详情
 		</view>
 		<view class="comment {{tabCurrent == 1?'detail_select':''}}"  data-current="1" bindtap="select_this">
 			评价
 		</view>
-	</view>
+	</view> -->
 	<view class="detail_show w710">
 		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
 			<view class="content ql-editor" >
@@ -102,7 +102,7 @@
 	            <template is="wxParse" data="{{wxParseData:web_mainData.content}}"/>
 	        </view>
 		</view>
-		<view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
+		<!-- <view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
 			<view class="good_com flexRowBetween">
 				<view class="comment_number">
 					评价({{web_totalMessage}})
@@ -126,7 +126,7 @@
 					</view>
 				</view>
 			</block>
-		</view>
+		</view> -->
 	</view>
 </view>
 <view class="{{isShow?'mask':''}}"></view>
@@ -137,9 +137,9 @@
 			<image src="/images/share.png"></image>
 			<view class="text1">分享</view>
 		</button>
-		<button class="consult collect" bindtap="collect" style="line-height:normal">
-			<image src="{{url}}"></image>
-			<view class="text1">收藏</view>
+		<button class="consult collect" bindtap="intoPath" data-path="/pages/index/index">
+			<image src="/images/icon.png"></image>
+			<view class="text1">首页</view>
 		</button>
 		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time==0||web_skuData.start_time<web_nowTiem}}">
 			<button class="shoppingCart color1" bindgetuserinfo="selectModel" data-type="addCart"  open-type="getUserInfo" wx:if="{{web_skuData.is_group=='0'}}">
@@ -164,8 +164,14 @@
 		</view>
 	</view>
 </view>
-<view id="choose" style="{{isShow?'bottom:0':'bottom:-100%'}}">
-	<view style="padding:0 2.5%;position: relative;">
+
+<view style="position: fixed;bottom: 300rpx;right: 0;" bindtap="intoPath" data-path="/pages/shopping/shopping">
+	<image src="/images/car.png" style="height: 100rpx;width: 100rpx;"></image>
+</view>
+
+<!-- 规格 -->
+<view id="choose" style="{{isShow?'bottom:0;height: 900rpx;':'bottom:-100%'}}" class="tcBox">
+	<view style="padding:0 2.5%;position: relative;display: flex;flex-direction: column;">
 		<view class="flexRowBetween pricity">
 			<view class="choose_pro">
 				<image src="{{web_skuData.mainImg[0].url}}"></image>
@@ -183,25 +189,25 @@
 			<image src="/images/close.jpg"></image>
 			</view>
 		</view>
-		<scroll-view scroll-Y style="height:260rpx;">
-		<block wx:for="{{web_labelData}}" wx:key="id">
-			<view  style="margin-top:20rpx;">
-				<view id="type">
-					<view class="pro_type">	
-						{{item.title}}
-					</view>
-					<view class="flexRowBetween" style="justify-content:flex-start;flex-wrap: wrap;">
-						<block wx:for="{{web_labelData[index].child}}" wx:key="id" wx:for-item="c_item">
-							<view class="pro_types" data-id="{{c_item.id}}" data-parentid="{{item.id}}"  
-							bindtap="{{func.inArray(c_item.id,web_choose_sku_item)!=-1?'chooseSku':''}}" 
-							style="{{func.inArray(c_item.id,web_choose_sku_item)==-1?'border:1px dashed  #e5e5e5;color:#e5e5e5;':(func.inArray(c_item.id,web_sku_item)!=-1?'border:1px solid #e5747c;color:#e5747c;':'')}}">
-								{{c_item.title}}
-							</view>
-						</block>
+		<scroll-view scroll-Y style="height:480rpx;flex: 1;">
+			<block wx:for="{{web_labelData}}" wx:key="id">
+				<view  style="margin-top:20rpx;">
+					<view id="type">
+						<view class="pro_type" style="font-size: 30rpx;font-weight: bold;">	
+							{{item.title}}
+						</view>
+						<view class="flexRowBetween" style="justify-content:flex-start;flex-wrap: wrap;">
+							<block wx:for="{{web_labelData[index].child}}" wx:key="id" wx:for-item="c_item">
+								<view class="pro_types" data-id="{{c_item.id}}" data-parentid="{{item.id}}"  
+								bindtap="{{func.inArray(c_item.id,web_choose_sku_item)!=-1?'chooseSku':''}}" 
+								style="{{func.inArray(c_item.id,web_choose_sku_item)==-1?'border:1px dashed  #e5e5e5;color:#e5e5e5;':(func.inArray(c_item.id,web_sku_item)!=-1?'border:1px solid #e5747c;color:#e5747c;':'')}}">
+									{{c_item.title}}
+								</view>
+							</block>
+						</view>
 					</view>
 				</view>
-			</view>
-		</block>
+			</block>
 		</scroll-view>
 		<view class="choose_number flexRowBetween">
 			<view class="number_txt">
@@ -226,6 +232,7 @@
 		</view>
 	</view>
 </view>
+
 <view id="group2" wx:if="{{web_isShow}}"  catchtouchmove="true">
 	<view class="group1 group2">
 		<view class="close" bindtap="showGroupMember"><image src="/images/close_icon.png"></image></view>

@@ -271,24 +271,29 @@ swiper{
 	width:100%;
 	flex-wrap:wrap;
 	margin-top:10rpx;
-	padding-top: 40rpx;
+	padding: 30rpx 10rpx;
 	background: #f7f7f7;
 	margin-top:15rpx;
 }
 .menu_item{
-	width:25%;
-	text-align:center;
-	height:160rpx;
-
+	width:100%;
+	/* text-align:center; */
+	height:60rpx;
+	display: flex;
+	align-items: center;
 }
 .menu_item image{
-	width:70rpx;
-	height:70rpx;
-	margin-bottom: 10rpx;
+	width:50rpx;
+	height:50rpx;
+	margin-right: 20rpx;
+	/* margin-bottom: 10rpx; */
 }
 .menu_item view{
-	text-align:center;
-	width:100%;
+	/* text-align:center; */
+	/* width:100%; */
+	flex: 1;
+	line-height: 60rpx;
+	font-size: 30rpx;
 }
 /********************优惠大厅**********************/
 .recommend1{
@@ -433,7 +438,7 @@ swiper{
 	margin-bottom: 10rpx;
 }
 .product_pro .price{
-	width:26%;
+	width:50%;
 	padding: 0 2%;
 	text-align:left;
 
@@ -470,4 +475,20 @@ swiper{
 .activty_cont {
 	width:90%;
 	margin:0 auto;
+}
+
+
+
+.btn{
+	padding: 0 10rpx;
+	background-color: #e58815;
+	text-align: center;
+	line-height: 40rpx;
+	border-radius: 20rpx;
+	color: #fff;
+	margin: 0 10rpx 20rpx;
+	margin-bottom: 20rpx;
+}
+.btn1{
+	background-color: #e50112;
 }

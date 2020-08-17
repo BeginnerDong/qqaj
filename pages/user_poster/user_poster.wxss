@@ -3,10 +3,11 @@
 }
 .poster_txt1{
 	color:#444;
+	font-size: 32rpx;
 }
 .poster_img image{
-	width:282rpx;
-	height:282rpx;
+	width:500rpx;
+	height:500rpx;
 	margin:30rpx 0 50rpx;
 }
 .poster{

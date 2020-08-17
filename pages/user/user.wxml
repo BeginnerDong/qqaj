@@ -24,23 +24,20 @@
     </view>
 </view>
 <view class="sort flexRowBetween">
-    <view class="sort_cont flexRowBetween">    
-        <view class="sort_item"  bindtap="intoPath"  data-path="/pages/user_collect/user_collect">
-            <view class="sort_icon">
-                {{web_collectData?web_collectData:'0'}}
-            </view>
-            <view class="sort_txt">
-               我的收藏
-            </view>
-        </view>
-        <view class="sort_item" bindtap="intoPath"  data-path="/pages/user_credit/user_credit">
-                <view class="sort_icon">
-                    {{web_userData.score?web_userData.score:'网络故障'}}
-                </view>
-                <view class="sort_txt">
-                   我的积分
-                </view>
-        </view>
+    <view class="sort_cont flexRowBetween" style="padding: 0 20rpx;">
+		<view class="user_order flexRowBetween" bindtap="intoPath"  data-path="/pages/user_credit/user_credit">
+		    <view class="order_left flex">
+		        <image src="/images/user_icon5.png" style="width: 34rpx;"></image>
+		        <view class="my_order">我的积分</view>
+		    </view>
+		    
+		    <view class="check_order flexRowBetween">
+		        <view class="font30 color6">
+		            {{web_userData.score?web_userData.score:'网络故障'}}
+		        </view>
+		        <image src="/images/next_page.png"></image>
+		    </view>
+		</view>
     </view>
 </view>
 <view class="order w710 font30 color3" bindtap="intoPath" data-path="/pages/user_order/user_order">
@@ -51,7 +48,7 @@
         </view>
         
         <view class="check_order flexRowBetween">
-            <view class="font26">
+            <view class="font30 color6">
                 查看订单
             </view>
             <image src="/images/next_page.png"></image>
@@ -79,7 +76,7 @@
     </view>
 </view>
 <view class="user_all font30 color3">
-    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_back_money/user_back_money">
+    <!-- <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_back_money/user_back_money">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon2.png"></image>
             <text>我的佣金</text>
@@ -87,7 +84,7 @@
         <view class="next_page">
             <image src="/images/next_page.png"></image>
         </view>
-    </view>
+    </view> -->
     <view class="user_infor flexRowBetween w710"  bindtap="intoPath" data-path="/pages/user_discount/user_discount">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon3.png"></image>
@@ -106,7 +103,7 @@
             <image src="/images/next_page.png"></image>
         </view>
     </view>
-    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_credit/user_credit">
+    <!-- <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_credit/user_credit">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon5.png"></image>
             <text>我的积分 </text>
@@ -114,20 +111,20 @@
         <view class="next_page">
             <image src="/images/next_page.png"></image>
         </view>
-    </view>
+    </view> -->
     <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_next/user_next">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon6.png"></image>
-            <text>我的下线</text>
+            <text>我是群主</text>
         </view>
         <view class="next_page">
             <image src="/images/next_page.png"></image>
         </view>
     </view>
-    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_collect/user_collect">
+    <view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user-aboutUS/user-aboutUS">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon7.png"></image>
-            <text>我的收藏</text>
+            <text>联系我们</text>
         </view>
         <view class="next_page">
             <image src="/images/next_page.png"></image>

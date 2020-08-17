@@ -19,7 +19,8 @@ Page({
 			type: 1,
 			status: ['in', [0, 1]]
 		},
-		buttonClicked: false
+		buttonClicked: false,
+		liCurr:1
 	},
 
 
@@ -42,6 +43,13 @@ Page({
 			fonts: app.globalData.font
 		});
 
+	},
+	
+	changeLi(i){
+		const self = this;
+		self.setData({
+			liCurr : i
+		})
 	},
 
 

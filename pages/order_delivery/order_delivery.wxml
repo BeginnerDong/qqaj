@@ -8,8 +8,8 @@
             </view>
             <view class="product_right">
                 <view class="product_detail">
-                    <view class="font32 color3 product_top">{{item.product.title}}</view>
-                    <view class="font24 color9 product_top">{{item.product.description}}</view>
+                    <view class="font32 color3" style="height: 60%;">{{item.product.title}}</view>
+                    <view class="font24 color9">{{item.product.description}}</view>
                     <view class="product_top flex">
                         <view class="font30 color6 product_number">X{{item.count}}</view>
                         <view class="font30 product_price color">¥{{item.product.price}}</view>

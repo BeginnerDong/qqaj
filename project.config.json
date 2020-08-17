@@ -87,7 +87,7 @@
 				},
 				{
 					"id": -1,
-					"name": "取货吗",
+					"name": "取货码",
 					"pathName": "pages/user_order_code/user_order_code",
 					"query": ""
 				},
@@ -209,6 +209,26 @@
 					"name": "pages/detail/detail",
 					"pathName": "pages/detail/detail",
 					"query": "id=1027",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user-aboutUS/user-aboutUS",
+					"pathName": "pages/user-aboutUS/user-aboutUS",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user_order/user_order",
+					"pathName": "pages/user_order/user_order",
 					"scene": null
 				}
 			]

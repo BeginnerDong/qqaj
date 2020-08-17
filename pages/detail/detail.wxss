@@ -74,6 +74,7 @@ swiper{
 	margin-right:16rpx;
 }
 .choose_left .text1{
+	font-size: 26rpx;
 	margin-right:40rpx;
 	color:#999;
 }
@@ -210,7 +211,7 @@ line-height:62rpx;}
 }
 .shoppingCart{
 	width:50%;
-	background:#e5747c;
+	background:#e58815;
 	text-align:center;
 	}
 .go_pay{
@@ -260,6 +261,7 @@ line-height:62rpx;}
 	width:10%;
 	text-align:right;
 	height:100%;
+	top: 30rpx;
 }
 
 .pro_name{
@@ -267,7 +269,7 @@ line-height:62rpx;}
 	color:#333;
 }
 .pro_type{
-	font-size:22rpx;
+	font-size:26rpx;
 	color:#999;
 }
 .price_choose{
@@ -306,14 +308,14 @@ line-height:62rpx;}
 }
 
 .edit_number{
-	
+	margin-right: 30rpx;
 	height:60rpx;
 	line-height:52rpx;
 	border:solid 1px #e5e5e5;
 	font-size:20rpx;
 }
 .edit_number .minus,.edit_number .add{
-	width:60rpx;
+	width:100rpx;
 	height:100%;
 	text-align:center;
 	color:#aeaeae;
@@ -468,4 +470,12 @@ line-height:62rpx;}
 #group1 text{
 	color:#fe5678;
 	position: relative;
+}
+
+
+.tcBox{
+	height: 900rpx;
+}
+.choose_number{
+	
 }

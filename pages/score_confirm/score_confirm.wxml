@@ -35,9 +35,9 @@
         </view>
         <view class="product_right">
             <view class="product_detail">
-                <view class="font32 color3 product_top">{{web_mainData.title}}</view>
+                <view class="font32 color3 product_top" style="height: 60%;">{{web_mainData.title}}</view>
                 <view class="font24 color9 product_top">类型一</view>
-                <view class="product_top flex">
+                <view class="flex" style="height: 40%;">
                     <view class="font30 color6 product_number">X{{web_mainData.count}}</view>
                     <view class="font30 product_price color">¥{{web_mainData.price}}</view>
                 </view>

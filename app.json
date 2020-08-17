@@ -33,7 +33,8 @@
     "pages/userCashNow/userCashNow",
     "pages/todayGroup/todayGroup",
     "pages/freeDiscount/freeDiscount",
-		"pages/oldGroup/oldGroup"
+		"pages/oldGroup/oldGroup",
+		"pages/user-aboutUS/user-aboutUS"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,12 @@
+.item{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20rpx;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.item image{
+	width: 60rpx;
+	height: 60rpx;
+}
