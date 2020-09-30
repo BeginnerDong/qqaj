@@ -47,7 +47,7 @@ Page({
         self.data.shareBtn = false;
       }
       return {
-        title: '巧巧爱家',
+        title: '巧巧爱家 - '+ wx.getStorageSync('info').nickname,
          path: 'pages/index/index?parent_no='+wx.getStorageSync('info').user_no,
         success: function (res){
           console.log(res);

@@ -5,6 +5,9 @@ page{
 	min-height:100%;
 	background:#f1eff6;
 }
+view{
+	color: black;
+}
 .banner{
 	width:100%;
 	height:600rpx;
@@ -24,7 +27,7 @@ swiper{
 }
 .product_top{
 	padding:20rpx 35rpx 35rpx;
-	border-bottom:solid 1px #ececec;
+	border-bottom:solid 1px #f3c6c9;
 	background: #fff;
 }
 .name_share image{
@@ -189,7 +192,7 @@ line-height:62rpx;}
 	height:34rpx;
 }
 .consult .text1{
-	font-size:18rpx;
+	font-size:22rpx;
 	color:#626262;
 }
 .go_buy{
@@ -221,6 +224,13 @@ line-height:62rpx;}
 	text-align:center;	
 	line-height:70rpx;
 }
+.go_pay1{
+	width:50%;
+	height:80rpx;
+	background:#e50112;
+	text-align:center;	
+	line-height:80rpx;
+}
 .mask{
 	position:absolute;
 	top:0rpx;
@@ -246,16 +256,15 @@ line-height:62rpx;}
 .pricity{
 	margin-bottom:55rpx;
 	width:100%;
-	height:135rpx;
 	margin-top: 30rpx;
 }
 .choose_pro{
-	width:25%;
+	width:35%;
 	height:auto;
 }
 .choose_pro image{
-	width:160rpx;
-	height:135rpx;
+	width:232rpx;
+	height:190rpx;
 }
 .close{
 	width:10%;
@@ -265,7 +274,7 @@ line-height:62rpx;}
 }
 
 .pro_name{
-	font-size:28rpx;
+	font-size:32rpx;
 	color:#333;
 }
 .pro_type{
@@ -275,8 +284,9 @@ line-height:62rpx;}
 .price_choose{
 	font-size:28rpx;
 	color:#e50112;
+	font-weight: 700;
 }
-.product_txt{width:75%;}
+.product_txt{width:65%;}
 #type{
 	width: 100%;
 	
@@ -333,8 +343,9 @@ line-height:62rpx;}
 }
 .go_buy button{
 	font-weight:normal;
-	font-size:28rpx;
+	font-size:32rpx;
 	border-radius:0;
+	font-weight: bold;
 }
 .group_one{
 	width: 100%;
@@ -424,8 +435,8 @@ line-height:62rpx;}
 	width:50rpx;
 	height: 50rpx;
 	position: absolute;
-	top:0rpx;
-	right:20rpx;
+	top:20rpx;
+	right:40rpx;
 }
 .close image{
 	width:100%;

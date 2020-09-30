@@ -457,7 +457,10 @@ class Base{
         wx.removeStorageSync('threeInfo');
         wx.removeStorageSync('threeToken');
         if(!wx.getStorageSync('login')){
-            self.pathTo('/pages/user/user','redi')
+			 self.showToast('登录失效，请重新登录','none');
+			 setTimeout(function() {
+				 self.pathTo('/pages/user/user','rela')
+			 }, 1000);
         }else{
             self.showToast('系统故障','fail')
         }

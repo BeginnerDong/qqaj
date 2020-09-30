@@ -44,6 +44,9 @@ Page({
     const postData = {};
     postData.paginate = api.cloneForm(self.data.paginate);
     postData.token = wx.getStorageSync('token');
+	postData.order = {
+		isdefault:'desc'
+	};
     const callback = (res)=>{
       console.log(res);
       if(res.info.data.length>0){

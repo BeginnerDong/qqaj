@@ -3,7 +3,6 @@
 @import "../../wxParse/wxParse.wxss"; 
 .manage{
 	height:190rpx;
-	border-bottom:solid 1px #e0e0e0;
 }
 .manage_cont{
 	width:100%;

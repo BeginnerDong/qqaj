@@ -1,67 +1,152 @@
 <!--index3.wxml-->
-<view class="order_code flex font28 w710">
-    <view class="code_tlt color3">取货码:</view>
-    <input placeholder="请输入取货码" bindinput="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
-    <view class="code_btn"><button bindtap='search' class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
+<view>
+	<picker style="height: 45px;display: flex;align-items: center;padding-left: 2.6%;justify-content: center;" mode="selector" range="{{searchType}}" bindchange="chooseSearchType">{{isChoose?searchType[web_index]:'选择搜索方式'}}</picker>
 </view>
-<block wx:for="{{web_mainData}}" wx:key="id" wx:for-index="index">
-     <view class="product">
-        <view class="order_tlt w710 flexRowBetween ">
-            <view class="tlt_left" style="width:100%">交易时间:{{item.create_time}}</view>
-        </view>
-        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item"  wx:for-index="c_index" wx:key="id">
-            <view class="product_box w710 flexRowBetween bg1" data-index="{{index}}" data-content="{{c_item.snap_product.title+'已取货X'+c_item.count}}" bindtap="fillForm">
-                <view class="product_left">
-                    <image src="{{c_item.snap_product.mainImg[0].url}}" mode='aspectFill'></image>
-                </view>
-                <view class="product_right">
-                <view class="product_detail">
-                <view class="font32 color3 product_top avoidOverflow" style="font-weight: 700;">{{c_item.snap_product.title}}</view>
-					<view style="font-size:32rpx;color:#ff0000;height: 35%;" >{{item.passage2}}</view>
-                    <view class="font24 color9">{{c_item.snap_product.description}}</view>
-                    <view class="font30 color6  flex" style="height:50%;">
-                        <view class="product_number">X{{c_item.count}}</view>
-                        <view class="product_price color">¥{{item.price}}</view>
-                    </view>
-                </view>
-                </view>
-            </view>
-        </block>
-        
-        <view class="getUser flex bg1">
-            <view class="user_left">
-                <view class="user_img">
-                    <image src="{{item.user[0].headImgUrl}}"/>
-                </view>
-                <view class="font24">{{item.user[0].nickname}}</view>
-            </view>
-            <view class="user_right">
-                <view class="font28" style="height:80rpx;line-height:80rpx;">
-                    <text class="font28 color3">收货人姓名：</text>{{item.snap_address.name}}</view>
-            <view class="font28"><text class="font28 color3">收货人电话：</text>{{item.snap_address.phone}}</view>
-            </view>
-        </view>
-		<view class="w710 flex1 balance bg_white" style="margin-bottom:20rpx;margin-top:20rpx;" wx:if="{{item.snap_address.message!=''}}">          
-		    <view class="balance_left font28" style="width:22%">
-		        备注信息
-		    </view>
-		    <view class="balance_right bg_white font28" style="width:77%;color: red;">
-		        {{item.snap_address.message}}
-		    </view>
-		</view>
-        <view class="w710 flex1 balance bg_white" style="margin-bottom:20rpx;margin-top:20rpx;">          
-            <view class="balance_left font28" style="width:22%">
-                核销信息
-            </view>
-            <view class="balance_right bg_white" style="width:77%;">
-                <textarea class="font24" placeholder="核销信息" style="border:1px solid #e5e5e5;" data-key="passage4" data-index="{{index}}" bindinput="textareaBind" value="{{item.passage4}}"></textarea>
-            </view>
-        </view>
-        <view class="order_handle">
-            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel" data-index="{{index}}">整单核销</view>
+<view class="order_code flex font28 w710" wx:if="{{isChoose}}"
+ style="font-size: 32rpx;">
+	<view class="code_tlt color3">{{searchType[web_index]}}:</view>
+	<input placeholder="输入关键字搜索" bindinput="changeBind" data-key="keywords" value="{{web_sForm.keywords}}"></input>
+	<view class="code_btn"><button bindtap='searchTwo' class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
+</view>
+<view class="list" wx-if="{{isQQ}}">
+	<view bindtap="changeLi" data-value="0" class="{{liCurr == 0?'on':'li'}}">自提订单</view>
+	<view bindtap="changeLi" data-value="1"  class="{{liCurr == 1?'on':'li'}}">快递订单</view>
+</view>
 
-            <view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdateTwo" data-index="{{index}}">部分核销</view>
-            
-        </view>
-    </view>
-</block>
+<view wx-if="{{liCurr==0}}">
+	<view class="order_code flex font28 w710">
+		<view class="code_tlt color3">取货码:</view>
+		<input placeholder="请输入取货码" bindinput="changeBind" data-key="passage2" value="{{web_sForm.passage2}}"></input>
+		<view class="code_btn"><button bindtap='search' class="submit_info bg color1" style="border-radius: 10rpx;">搜索</button></view>
+	</view>
+	<block wx:for="{{web_mainData}}" wx:key="id" wx:for-index="index">
+		<view class="product">
+			<view class="order_tlt w710 flexRowBetween ">
+				<view class="tlt_left" style="width:100%">交易时间:{{item.create_time}}</view>
+			</view>
+			<block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:for-index="c_index" wx:key="id">
+				<view class="product_box w710 flexRowBetween bg1" data-index="{{index}}" data-content="{{c_item.snap_product.title+'已取货X'+c_item.count}}"
+				 bindtap="fillForm">
+					<view class="product_left">
+						<image src="{{c_item.snap_product.mainImg[0].url}}" mode='aspectFill'></image>
+					</view>
+					<view class="product_right">
+						<view class="product_detail">
+							<view class="font32 color3 product_top avoidOverflow" style="font-weight: 700;">{{c_item.snap_product.title}}</view>
+							<view style="font-size:32rpx;color:#ff0000;height: 35%;">{{item.passage2}}</view>
+							<view class="font24 color9">{{c_item.snap_product.description}}</view>
+							<view class="font30 color6  flex" style="height:50%;">
+								<view class="color" style="width: 40%;">¥{{c_item.snap_product.price}}</view>
+								<view class="product_number">X{{c_item.count}}</view>
+								<view class="product_price color">¥{{c_item.snap_product.price*c_item.count}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</block>
+			<view class="w710 flex1 balance bg_white" style="margin-bottom:20rpx;margin-top:20rpx;" wx:if="{{item.snap_address.message!=''}}">
+				<view class="balance_left font28" style="width:22%">
+					备注信息
+				</view>
+				<view class="balance_right bg_white font28" style="width:77%;color: red;">
+					{{item.snap_address.message}}
+				</view>
+			</view>
+			<view class="getUser flex bg1">
+				<view class="user_left">
+					<view class="user_img">
+						<image src="{{item.user[0].headImgUrl}}" />
+					</view>
+					<view class="font24">{{item.user[0].nickname}}</view>
+				</view>
+				<view class="user_right">
+					<view class="font28" style="height:80rpx;line-height:80rpx;">
+						<text class="font28 color3">收货人姓名：</text>{{item.snap_address.name}}
+					</view>
+					<view class="font28"><text class="font28 color3">收货人电话：</text>{{item.snap_address.phone}}</view>
+					<view class="flex" style="margin-top: 20rpx;">
+						<button type="primary" style="margin: 0;font-size: 15px;" bindtap="copyPhone" data-index="{{index}}">复制</button>
+						<button type="primary" style="margin: 0;margin-left: 20rpx;font-size: 15px;" bindtap="callPhone" data-index="{{index}}">拨打</button>
+					</view>
+				</view>
+			</view>
+			
+			<view class="w710 flex1 balance bg_white" style="margin-bottom:20rpx;margin-top:20rpx;">
+				<view class="balance_left font28" style="width:22%">
+					核销信息
+				</view>
+				<view class="balance_right bg_white" style="width:77%;">
+					<textarea class="font32" placeholder-class="font32" placeholder="核销信息" style="border:1px solid #e5e5e5;" data-key="passage4" data-index="{{index}}"
+					 bindinput="textareaBind" value="{{item.passage4}}"></textarea>
+				</view>
+			</view>
+			<view class="order_handle">
+				<view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="showModel"
+				 data-index="{{index}}">整单核销</view>
+	
+				<view class="submit_info font28" style="background:#f7f7f7;color:#666;" data-id="{{item.id}}" bindtap="orderUpdateTwo"
+				 data-index="{{index}}">部分核销</view>
+	
+			</view>
+		</view>
+	</block>
+</view>
+
+<view wx:if="{{liCurr == 1}}">
+	<block wx:for="{{web_mainData}}" wx:key="id" wx:for-index="index">
+	    <view class="product">
+	        <view class="order_tlt w710 flexRowBetween ">
+	            <view class="tlt_left">交易时间:{{item.create_time}}</view>
+	        
+	            <!-- <view class="tlt_left1 tlt_right color" >等待买家付款</view> -->
+	        </view>
+	        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:for-index="c_index" wx:key="id">
+	            <view class="product_box w710 flexRowBetween same_store">
+	                <view class="product_left">
+	                    <image src="{{c_item.snap_product.mainImg[0].url}}" mode='aspectFill'></image>
+	                </view>
+	                <view class="product_right">
+	                    <view class="product_detail">
+	                        <view class="font32 color3 product_top avoidOverflow">{{c_item.snap_product.title}}</view>
+	                        <view class="font28 color6 avoidOverflow">{{c_item.snap_product.description}}</view>
+	                        <view class="font30 color6  flex" style="height:50%;">
+	                            <view class="product_number">X{{c_item.count}}</view>
+	                            <view class="product_price color">¥{{item.price}}</view>
+	                        </view>
+	                    </view>
+						
+	                </view>
+	                
+	            </view>
+	        </block>
+			<view class="w710 flex1 balance bg_white" style="margin-bottom:20rpx;margin-top:20rpx;" wx:if="{{item.snap_address.message!=''}}">
+				<view class="balance_left font28" style="width:22%">
+					备注信息
+				</view>
+				<view class="balance_right bg_white font28" style="width:77%;color: red;">
+					{{item.snap_address.message}}
+				</view>
+			</view>
+	        <view class="getUser flex bg1">
+	        	<view class="user_left">
+	        		<view class="user_img">
+	        			<image src="{{item.user[0].headImgUrl}}" />
+	        		</view>
+	        		<view class="font24">{{item.user[0].nickname}}</view>
+	        	</view>
+	        	<view class="user_right">
+	        		<view class="font28" style="height:80rpx;line-height:80rpx;">
+	        			<text class="font28 color3">收货人姓名：</text>{{item.snap_address.name}}
+	        		</view>
+	        		<view class="font28"  style="height:80rpx;line-height:80rpx;"><text class="font28 color3">收货人电话：</text>{{item.snap_address.phone}}</view>
+					<view class="font28"  style="line-height:60rpx;"><text class="font28 color3">收货人地址：</text>{{item.snap_address.city+item.snap_address.detail}}</view>
+					<view class="flex" style="margin-top: 20rpx;">
+						<button type="primary" style="margin: 0;font-size: 15px;" bindtap="copyAddress" data-index="{{index}}">复制</button>
+						<button type="primary" style="margin: 0;margin-left: 20rpx;font-size: 15px;" bindtap="callPhone" data-index="{{index}}">拨打</button>
+					</view>
+				</view>
+	        </view>
+	        
+	    </view>
+	</block>
+</view>

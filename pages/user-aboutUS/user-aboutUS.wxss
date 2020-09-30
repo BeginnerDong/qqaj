@@ -1,12 +1,26 @@
 .item{
 	display: flex;
-	justify-content: space-between;
+	
 	align-items: center;
 	padding: 20rpx;
 	border-bottom: 1px solid #e1e1e1;
 }
-
+.item .middle{
+	width: 70%;
+	margin-left: 20rpx
+}
 .item image{
 	width: 60rpx;
 	height: 60rpx;
+}
+.btn{
+	width: 100rpx;
+	height: 50rpx;
+	padding: 0 20rpx;
+	line-height: 50rpx;
+	background: #179B16;
+	color: #fff;
+	font-size: 15px;
+	text-align: center;
+	border-radius: 20px;
 }

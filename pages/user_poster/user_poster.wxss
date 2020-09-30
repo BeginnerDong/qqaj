@@ -1,5 +1,5 @@
 .poster{
-	margin-top:200rpx;
+	margin-top:60rpx;
 }
 .poster_txt1{
 	color:#444;

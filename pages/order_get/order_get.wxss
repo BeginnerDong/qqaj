@@ -27,7 +27,8 @@
 }
 .address_infor{
 	width:100%;
-	height:50%;
+	height:100%;
+	line-height: 80rpx;
 }
 .address_right{
 	width:40%;
@@ -116,9 +117,14 @@
 .input_list1{
 	height:80rpx;
 	border-bottom:solid 1px #e0e0e0;
+	line-height: 80rpx;
 }
 .input_list1 .input_before{
 	width:22%;
+}
+.input_list1 .input_before1{
+	font-weight: 700;
+	font-size: 30rpx;
 }
 .input_list1 input{
 	width:76%;
@@ -223,8 +229,10 @@ textarea{
 .discount{
 	height:80rpx;
 	border-bottom:solid 1px #e0e0e0;
+	line-height: 80rpx;
 }
 .note_get{
 	height:80rpx;
 	line-height:80rpx;
+	font-weight: 700;
 }

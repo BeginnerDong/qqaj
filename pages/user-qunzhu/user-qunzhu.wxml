@@ -1,0 +1,37 @@
+<!--pages/user-qunzhu.wxml-->
+<view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_back_money/user_back_money">
+	<view class="user_left flexRowBetween">
+		<image src="/images/user_icon4.png"></image>
+		<text>我的佣金</text>
+	</view>
+	<view class="next_page">
+		<image src="/images/next_page.png"></image>
+	</view>
+</view>
+<view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_cash/user_cash">
+	<view class="user_left flexRowBetween">
+		<image src="/images/user_icon4.png"></image>
+		<text>我的提现</text>
+	</view>
+	<view class="next_page">
+		<image src="/images/next_page.png"></image>
+	</view>
+</view>
+<view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_next/user_next">
+	<view class="user_left flexRowBetween">
+		<image src="/images/user_icon4.png"></image>
+		<text>我的小伙伴</text>
+	</view>
+	<view class="next_page">
+		<image src="/images/next_page.png"></image>
+	</view>
+</view>
+<view class="user_infor flexRowBetween w710" bindtap="intoPath" data-path="/pages/user_poster/user_poster">
+	<view class="user_left flexRowBetween">
+		<image src="/images/user_icon8.png"></image>
+		<text>我的推广二维码</text>
+	</view>
+	<view class="next_page">
+		<image src="/images/next_page.png"></image>
+	</view>
+</view>

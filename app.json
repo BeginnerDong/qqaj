@@ -33,8 +33,9 @@
     "pages/userCashNow/userCashNow",
     "pages/todayGroup/todayGroup",
     "pages/freeDiscount/freeDiscount",
-		"pages/oldGroup/oldGroup",
-		"pages/user-aboutUS/user-aboutUS"
+    "pages/oldGroup/oldGroup",
+    "pages/user-aboutUS/user-aboutUS",
+    "pages/user-qunzhu/user-qunzhu"
   ],
   "window": {
     "backgroundTextStyle": "light",

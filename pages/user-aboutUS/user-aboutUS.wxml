@@ -1,8 +1,31 @@
-<view class="item">
+<view class="item"  wx-if="web_mainData[0].url">
 	<image src="/images/phone.png"></image>
-	<view class="font32">15263485792</view>
+	<view class="font32 middle" style="margin-left:;">{{web_mainData[0].url}}</view>
+	<view class="btn" bindtap="phoneCall" data-phone="{{web_mainData[0].url}}">拨打</view>
+</view>
+<view class="item"   wx-if="web_mainData[1].url">
+	<image src="/images/phone.png"></image>
+	<view class="font32 middle">{{web_mainData[1].url}}</view>
+	<view class="btn" bindtap="phoneCall" data-phone="{{web_mainData[1].url}}">拨打</view>
+</view>
+<view class="item"  wx-if="web_mainData[0].description">
+	<image src="/images/wx.png"></image>
+	<view class="font32 middle">{{web_mainData[0].description}}</view>
+	<view class="btn" bindtap="wxCopy" data-wx="{{web_mainData[0].description}}">复制</view>
+</view>
+<view class="item"   wx-if="web_mainData[1].description">
+	<image src="/images/wx.png"></image>
+	<view class="font32 middle">{{web_mainData[1].description}}</view>
+	<view class="btn" bindtap="wxCopy" data-wx="{{web_mainData[1].description}}">复制</view>
 </view>
 <view style="padding-top: 150rpx;width: 100%;">
-	<view style="font-size: 36rpx;font-weight: bold;text-align: center;padding: 40rpx;">扫描平台二维码联系我们</view>
-	<image src="/images/ewm.jpg" style="margin: 0 125rpx;height: 500rpx;width: 500rpx;"></image>
+	<view style="font-size: 36rpx;font-weight: bold;text-align: center;padding: 40rpx;">扫描二维码联系我们</view>
+	<view class="flexRowBetween">
+		<view style="width: 50%;display: flex;justify-content: center;">
+			<image  bindtap="previewImg" data-url="{{web_mainData[0].mainImg[0].url}}" src="{{web_mainData[0].mainImg[0].url}}" style="height: 250rpx;width: 250rpx;"></image>
+		</view>
+		<view style="width: 50%;display: flex;justify-content: center;">
+			<image  bindtap="previewImg" data-url="{{web_mainData[1].mainImg[0].url}}" src="{{web_mainData[1].mainImg[0].url}}" style="height: 250rpx;width: 250rpx;"></image>
+		</view>
+	</view>
 </view>

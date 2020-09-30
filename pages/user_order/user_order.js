@@ -20,7 +20,7 @@ Page({
 			status: ['in', [0, 1]]
 		},
 		buttonClicked: false,
-		liCurr:1
+		liCurr:0
 	},
 
 
@@ -222,7 +222,7 @@ Page({
 			self.data.searchItem.transport_status = '2';
 			self.data.searchItem.order_step = ['in', [3, 4, 5]];
 		} else if (num == '4') {
-			self.data.searchItem.order_step = '2';
+			self.data.searchItem.order_step = ['in', [1, 2]];
 		}
 		self.setData({
 			web_mainData: [],

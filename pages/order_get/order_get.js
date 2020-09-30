@@ -39,7 +39,8 @@ Page({
 		buttonClicked: true,
 		order_id: '',
 		complete_api: [],
-		storeId: 0
+		storeId: 0,
+		reduce:0
 	},
 
 	onLoad() {
@@ -222,8 +223,40 @@ Page({
 				web_userData: self.data.userData
 			});
 			self.getMainData()
+			self.distributionGet()
 		}
 		api.userGet(postData, callback)
+	},
+	
+	distributionGet() {
+		const self = this;
+		const postData = {};
+		postData.token = wx.getStorageSync('token');
+		postData.searchItem = {
+			child_no: wx.getStorageSync('info').user_no,
+		};
+		postData.getAfter = {
+			userInfo: {
+				tableName: 'UserInfo',
+				middleKey: 'parent_no',
+				key: 'user_no',
+				searchItem: {
+					status: 1
+				},
+				condition: '=',
+			}
+		};
+		const callback = (res) => {
+			if (res) {
+				self.data.distributionData = res.info.data[0];
+				self.setData({
+					web_distributionData: self.data.distributionData,
+				});
+				self.getMainData();
+			};
+		};
+		api.distributionGet(postData, callback);
+	
 	},
 
 
@@ -260,10 +293,11 @@ Page({
 					wxPay: self.data.totalPrice.toFixed(2),
 				},
 				data: {
-
+					
 					passage3: self.data.user_no ? self.data.user_no : '',
 					standard: self.data.mainData[0].product.standard
 				},
+				reduce:self.data.reduce,
 				passage1: self.data.submitData.passage1,
 				type: 1,
 				snap_address: self.data.submitData,
@@ -447,7 +481,13 @@ Page({
 							setTimeout(function() {
 								api.pathTo('/pages/user_order/user_order', 'redi');
 							}, 800)
-						};
+						}else{
+							setTimeout(function() {
+								wx.navigateBack({
+									delta:1
+								})
+							}, 800)
+						}
 					};
 					api.realPay(res.info, payCallback);
 				}
@@ -481,17 +521,23 @@ Page({
 		var secondBalance = 0;
 		var couponPrice = 0;
 		var productsArray = self.data.mainData;
+		var reduce = 0;
 		console.log('productsArray',productsArray)
 		for (var i = 0; i < productsArray.length; i++) {
 			totalPrice += productsArray[i].product.price * productsArray[i].count;
 			firstBalance += productsArray[i].count * productsArray[i].product.firstBalance;
 			secondBalance += productsArray[i].count * productsArray[i].product.secondBalance;
 		};
-		self.data.realTotalPrice = totalPrice;
-		self.data.secondBalance = secondBalance;
-		self.data.firstBalance = firstBalance;
+		if(parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].standard)<totalPrice){
+			reduce = parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].reduce)
+		};
+		self.data.reduce = reduce;
+		console.log('totalPrice', totalPrice)
+		self.data.realTotalPrice = totalPrice - reduce;
+		self.data.secondBalance = secondBalance - reduce;
+		self.data.firstBalance = firstBalance - reduce;
 		console.log(self.data.couponData)
-
+		totalPrice = totalPrice - reduce;
 		if (self.data.couponData.type == 3) {
 			if (self.data.couponData.discount > totalPrice) {
 				api.showToast('优惠券不可用', 'none');
@@ -517,7 +563,7 @@ Page({
 		console.log(self.data.couponPrice)
 		console.log(self.data.totalPrice)
 		self.setData({
-
+			reduce:self.data.reduce.toFixed(2),
 			web_couponPrice: couponPrice.toFixed(2),
 			web_totalPrice: totalPrice.toFixed(2),
 			/*web_paidPrice:totalPrice.toFixed(2),*/

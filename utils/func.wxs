@@ -73,6 +73,13 @@ var isInArray= function(arr,value){
     return false;
 }
 
+var add = function(num1,num2){
+	console.log(num1)
+	console.log(num2)
+    var newNum = parseFloat(num1)+parseFloat(num2)
+    return newNum;
+}
+
 var getArrayByTarget = function(array,targetName,target){
   var getItemsBytarget =function(array,targetName,target){
 

@@ -139,55 +139,45 @@
       </view>
     </view>
 </view> -->
-<view class="menu flexRowBetween font30 color6" wx:if="{{web_sliderData[0].url!='001'}}">
-<!--  <block wx:for="{{web_labelData}}" wx:key="id">
+<!-- <view class="menu flexRowBetween font30 color6" wx:if="{{web_sliderData[0].url!='001'}}">
+ <block wx:for="{{web_labelData}}" wx:key="id">
     <view class="menu_item" bindtap="intoPath" data-path="{{item.id==30?'/pages/group_list/group_list?id='+item.id:(item.id==34?'/pages/oldGroup/oldGroup?id='+item.id:'/pages/product_list/product_list?id='+item.id)}}" wx:if="{{item.id!=38}}">
       <view><image src="{{item.mainImg[0].url}}"></image></view>
       <view class="font24" style="color: #000000;">{{item.title}}</view>
     </view>
-  </block> -->
-  <view class="menu_item" bindtap="intoPath" data-path="{{'/pages/group_list/group_list?id=34'}}">
+  </block>
+  <view class="menu_item" bindtap="intoPath" data-path="{{'/pages/oldGroup/oldGroup?id=34'}}">
     <image src="/images/menu8.png"></image>
     <view class="font24" style="color: #000000;display: flex;justify-content: space-between;">
-		<view>往期团购</view>
+		<view>团购产品</view>
 		<view style="text-align: right;padding-right: 30rpx;">更多</view>
 	</view>
   </view>
-</view>
+</view> -->
 
+<view class="" style="background: #f7f7f7;margin-top: 20rpx;width: 100%;">
+  <view class="recommend1 flexRowBetween" >
+      <view class="recommend_left1 flex" style="width: 100%;" bindtap="intoPath" data-path="/pages/discount/discount" >
+        <image src="{{web_couponData.mainImg[0].url}}" style="width: 100%;"  mode="widthFix"></image>
+      </view>
+  </view>
+</view>
 <view class="w710" style="background: #f7f7f7;margin-top: 20rpx;padding-top:30rpx;padding-bottom: 40rpx;">
     <view class="mall_tlt">
         <image src="/images/tlt_bg.png"></image>
-        <view  class="mall_tlt_txt font30 color3">优惠大厅</view>
+        <view  class="mall_tlt_txt font30 color3" style="font-size: 34rpx;font-weight: 700;">本周福利</view>
     </view>
   <view class="recommend1 flexRowBetween" >
-      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/discount/discount" >
-        <image src="/images/home-icon11.png" class="img_bg" ></image>
-        <view class="activty flex" >
-          <view class="activty_cont flex">
-            <view class="activty_left">
-              <image src="/images/discount_icon1.png"></image>
-            </view>
-            <view class="activty_right">
-               <view class="font32 color1">优惠券</view>
-               <view class="font24 member_in color1">积分兑换优惠券</view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="recommend_left1 flex" bindtap="intoPath" data-path="/pages/freeDiscount/freeDiscount" >
-        <image src="/images/home-icon12.png" class="img_bg" ></image>
-        <view class="activty flex" >
-          <view class="activty_cont flex">
-            <view class="activty_left">
-              <image src="/images/discount_icon2.png"></image>
-            </view>
-            <view class="activty_right">
-               <view class="font32 color1">本周福利</view>
-               <view class="font24 member_in color1">免费领取本周福利</view>
-            </view>
-          </view>
-        </view>
+      <view class="recommend_left1 flex" style="width: 100%;" >
+			<image src="{{web_noteData.sku[0].mainImg[0].url}}"></image>
+			<view class="txt">
+				<view class="nameL">{{web_noteData.sku[0].title}}</view>
+				<view class="timeL">活动时间:{{func.timestampToTime(web_noteData.sku[0].start_time)}}~{{func.timestampToTime(web_noteData.sku[0].deadline)}}</view>
+				<view class="flex">
+					<view class="priceL">￥{{web_noteData.sku[0].price}}</view>
+					<view class="tagL"  bindtap="intoPath" data-path="/pages/detail/detail?id={{web_noteData.description}}">我要抢</view>
+				</view>
+			</view>
       </view>
   </view>
 </view>
@@ -195,22 +185,22 @@
         <view class="title flex">
             <view class="mall_tlt">
                 <image src="/images/tlt_bg.png"></image>
-                <view  class="mall_tlt_txt font30 color3">限时抢购区</view>
+                <view  class="mall_tlt_txt font30 color3" style="font-size: 34rpx;font-weight: 700;">正在开团</view>
             </view>
-            <view class="more font28 flex" bindtap="intoPath" data-path="/pages/product_list/product_list">更多</view>
+            <view class="more font28 flex" bindtap="intoPath" data-path="/pages/product_list/product_list">更多 ></view>
         </view>
         <view class="flexRowBetween" style="flex-wrap: wrap">
           <block wx:for="{{web_mainData}}" wx:key="id">
-            <view class="recommend_left product_item"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}" wx:if="{{item.is_group==0}}">
-                <image src="{{item.mainImg[0].url}}"></image>
-                <view class="product_name1 font30 avoidOverflow">{{item.title}}</view>
-                <view class="product_pro font28 flex" style="justify-content: space-between;" >
+            <view class="recommend_left product_item"   wx:if="{{item.is_group==0}}">
+                <image src="{{item.mainImg[0].url}}" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}"></image>
+                <view class="product_name1 font30 avoidOverflow" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}">{{item.title}}</view>
+                <view class="product_pro font28 flex" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}" style="justify-content: space-between;" >
                   <view class="color price">¥{{item.price}}</view>
 				  <view class="color6 price font22" style="text-align: right;">销量:{{item.product.saleNum}}</view>
                 </view>
                 <view class="product_pro font28 flex">
-                  <view class="btn">加入购物车</view>
-                  <view class="btn btn1">立即购买</view>
+                  <view class="btn" style="background: ##BC9823;" bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}&&type=show">加购物车</view>
+                  <view class="btn btn1"  bindtap="intoPath" data-path="/pages/detail/detail?id={{item.id}}&&type=show">立即购买</view>
                 </view>
             </view>
           </block>
@@ -233,6 +223,11 @@
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect" data-path="/pages/shopping/shopping">
         <view class="nav_img">
+			<view class="cart_number">
+			    <view class="fiexd-cart">
+			        <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;">{{web_cartTotalCounts}}</view>
+			    </view>
+			</view>
            <image src="/images/navbar3.png"></image>
         </view>
         <view class="text">购物车</view>

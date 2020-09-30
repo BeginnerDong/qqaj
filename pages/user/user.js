@@ -31,9 +31,17 @@ Page({
     self.getUserInfoData();
     self.data.mainData = api.jsonToArray(wx.getStorageSync('collectData'),'unshift');
     console.log(self.data.mainData.length)
-    self.setData({
-      web_collectData:self.data.mainData.length
-    })
+	var cartTotalCounts = 0;
+	self.data.cartData = api.jsonToArray(wx.getStorageSync('cartData'),'unshift');
+	for(var i=0;i<self.data.cartData.length;i++){
+	  if(self.data.cartData[i].isSelect){
+	    cartTotalCounts += self.data.cartData[i].count;
+	  }
+	};
+	self.setData({
+		web_collectData:self.data.mainData.length,
+	  web_cartTotalCounts:cartTotalCounts,
+	})
   },
 
   getUserInfoData(){
@@ -76,6 +84,18 @@ Page({
     api.readCheck(postData,callback)
   },
  
+	checkLogin(e){
+		const self = this;
+		if(wx.getStorageSync('threeInfo')&&wx.getStorageSync('threeToken')){
+		    wx.navigateTo({
+		      url: '/pages/user_order_code/user_order_code'
+		    })
+		}else{
+			wx.navigateTo({
+			  url: '/pages/login/login'
+			})
+		}	
+	},
 
   intoPath(e){
     const self = this;
