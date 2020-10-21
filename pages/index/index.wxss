@@ -512,4 +512,4 @@ swiper{
 .recommend_left1 .txt .nameL{font-size: 32rpx;font-weight: bold;}
 .recommend_left1 .txt .timeL{font-size: 26rpx;}
 .recommend_left1 .txt .priceL{font-size: 34rpx;color: #e50112;font-weight: bold;}
-.recommend_left1 .txt .tagL{font-size: 24rpx;background-color: #e50112;color: #fff;border-radius: 10rpx;line-height: 50rpx;width: 200rpx;text-align: center;margin: 0 40rpx;}
+.recommend_left1 .txt .tagL{font-weight: 700;font-size: 30rpx;background-color: #e50112;color: #fff;border-radius: 10rpx;line-height: 50rpx;width: 230rpx;text-align: center;margin: 0 40rpx;}

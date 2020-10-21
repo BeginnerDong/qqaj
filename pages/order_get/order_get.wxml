@@ -31,7 +31,7 @@
 	<view class="user_message w710 input_list1">
 		<view class="font28" style="display: flex;align-items: center;">
 			<view class="input_before1">买家留言:</view>
-			<textarea placeholder="输入买家留言" data-key="message" bindblur="changeBind" style="padding-left:20rpx;" value="{{web_submitData.message}}"></textarea>
+			<textarea placeholder-style="line-height:50rpx" placeholder="输入买家留言" data-key="message" bindblur="changeBind" style="padding-left:20rpx;" value="{{web_submitData.message}}"></textarea>
 		</view>
 	</view>
 	<view class="w710 discount input_list1" wx:if="{{web_mainData[0].product.is_group=='0'}}">

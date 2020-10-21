@@ -167,7 +167,7 @@
         <image src="/images/tlt_bg.png"></image>
         <view  class="mall_tlt_txt font30 color3" style="font-size: 34rpx;font-weight: 700;">本周福利</view>
     </view>
-  <view class="recommend1 flexRowBetween" >
+  <view class="recommend1 flexRowBetween"   bindtap="intoPath" data-path="/pages/detail/detail?id={{web_noteData.description}}">
       <view class="recommend_left1 flex" style="width: 100%;" >
 			<image src="{{web_noteData.sku[0].mainImg[0].url}}"></image>
 			<view class="txt">
@@ -175,7 +175,7 @@
 				<view class="timeL">活动时间:{{func.timestampToTime(web_noteData.sku[0].start_time)}}~{{func.timestampToTime(web_noteData.sku[0].deadline)}}</view>
 				<view class="flex">
 					<view class="priceL">￥{{web_noteData.sku[0].price}}</view>
-					<view class="tagL"  bindtap="intoPath" data-path="/pages/detail/detail?id={{web_noteData.description}}">我要抢</view>
+					<view class="tagL">我要抢</view>
 				</view>
 			</view>
       </view>

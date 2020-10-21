@@ -218,9 +218,10 @@
 	width:22%;}
 textarea{
 	width:78%;
-	height:30rpx;
+	height:50rpx;
 	font-size:28rpx;
 	color:#999;
+	line-height: 50rpx;
 }
 .user_message{
 	padding:30rpx 20rpx;

@@ -100,6 +100,7 @@ Page({
 			});
 			const callback = (res) => {
 				self.getMessageData();
+				self.getUserInfoData()
 			};
 			token.getUserInfo({
 				data: {}
@@ -108,6 +109,7 @@ Page({
 			var token = new Token();
 			const callback = (res) => {
 				self.getMessageData();
+				self.getUserInfoData()
 			};
 			token.getUserInfo({
 				data: {}
@@ -120,6 +122,61 @@ Page({
 	onUnload: function() {
 		const self = this;
 		clearInterval(self.data.intervalOne);
+	},
+	
+	getUserInfoData(){
+	  const self = this;
+	  const postData = {};
+	  postData.token = wx.getStorageSync('token');
+	  const callback = (res)=>{
+	    if(res.solely_code==100000){
+	      if(res.info.data.length>0){
+	        self.data.userData = res.info.data[0]; 
+			console.log(self.data.userData.level>0?'pages/detail/detail?id=' + self.data.id + '&&user_no=' + wx.getStorageSync('info').user_no:'pages/detail/detail?id=' + self.data.id)
+	      }
+	    }else{
+	      api.showToast('网络故障','none')
+	    }
+	    wx.hideLoading();
+	  };
+	  api.userInfoGet(postData,callback);   
+	},
+	
+	onShareAppMessage(res){
+	  const self = this;
+	   console.log(res)
+	    if(res.from == 'button'){
+	      self.data.shareBtn = true;
+	    }else{   
+	      self.data.shareBtn = false;
+	    }
+	    return {
+	      title: self.data.userData.level>0?'巧巧爱家 - '+ wx.getStorageSync('info').nickname:'巧巧爱家',
+	       path: self.data.userData.level>0?'pages/index/index?parent_no='+wx.getStorageSync('info').user_no:'pages/index/index',
+	      success: function (res){
+	        console.log(res);
+	        console.log(parentNo)
+	        if(res.errMsg == 'shareAppMessage:ok'){
+	          console.log('分享成功')
+	          if (self.data.shareBtn){
+	            if(res.hasOwnProperty('shareTickets')){
+	            console.log(res.shareTickets[0]);
+	              self.data.isshare = 1;
+	            }else{
+	              self.data.isshare = 0;
+	            }
+	          }
+	        }else{
+	          wx.showToast({
+	            title: '分享失败',
+	          })
+	          self.data.isshare = 0;
+	        }
+	      },
+	      fail: function(res) {
+	        console.log(res)
+	      }
+	    }
 	},
 
 	getNoteData() {
