@@ -298,7 +298,7 @@ Page({
 					standard: self.data.mainData[0].product.standard
 				},
 				reduce:self.data.reduce,
-				passage1: self.data.submitData.passage1,
+				//passage1: self.data.submitData.passage1,
 				type: 1,
 				snap_address: self.data.submitData,
 			};
@@ -522,20 +522,56 @@ Page({
 		var couponPrice = 0;
 		var productsArray = self.data.mainData;
 		var reduce = 0;
+		var array = [];
 		console.log('productsArray',productsArray)
 		for (var i = 0; i < productsArray.length; i++) {
 			totalPrice += productsArray[i].product.price * productsArray[i].count;
 			firstBalance += productsArray[i].count * productsArray[i].product.firstBalance;
 			secondBalance += productsArray[i].count * productsArray[i].product.secondBalance;
+			if (array.length > 0) {
+				var hasone = false;
+				for (var j = 0; j < array.length; j++) {
+					if (productsArray[i].product.product_no == array[j].menu) {
+						array[j].data.push(productsArray[i]);
+						hasone = true;
+					};
+					console.log('array1',array)
+				};
+				if (!hasone) {
+					array.push({
+						menu: productsArray[i].product.product_no,
+						
+						data: [productsArray[i]],
+					});
+				};
+			} else {
+				array.push({
+					menu: productsArray[i].product.product_no,
+					
+					data: [productsArray[i]],
+				})
+				
+			};
 		};
-		if(parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].standard)<totalPrice){
+		/* if(parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].standard)<totalPrice){
 			reduce = parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].reduce)
+		}; */
+		var zong = 0;
+		console.log('array',array)
+		for (var i = 0; i < array.length; i++) {
+			for (var j = 0; j < array[i].data.length; j++) {
+				zong += array[i].data[j].product.price*array[i].data[j].count
+				if(zong>parseFloat(array[i].data[j].product.product.standard)){
+					reduce += parseFloat(array[i].data[j].product.product.reduce)
+					console.log('reduce',reduce)
+				}
+			}
 		};
 		self.data.reduce = reduce;
 		console.log('totalPrice', totalPrice)
 		self.data.realTotalPrice = totalPrice - reduce;
-		self.data.secondBalance = secondBalance - reduce;
-		self.data.firstBalance = firstBalance - reduce;
+		/* self.data.secondBalance = secondBalance;
+		self.data.firstBalance = firstBalance; */
 		console.log(self.data.couponData)
 		totalPrice = totalPrice - reduce;
 		if (self.data.couponData.type == 3) {
@@ -555,7 +591,8 @@ Page({
 
 
 
-
+		self.data.secondBalance = parseFloat(parseFloat(secondBalance)-parseFloat(couponPrice)-parseFloat(reduce)).toFixed(2);
+		self.data.firstBalance = parseFloat(parseFloat(firstBalance)-parseFloat(couponPrice)-parseFloat(reduce)).toFixed(2);
 		self.data.totalPrice = totalPrice;
 		/*self.data.paidPrice = totalPrice;*/
 		self.data.couponPrice = couponPrice;

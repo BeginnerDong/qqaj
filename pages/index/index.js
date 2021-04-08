@@ -19,7 +19,7 @@ Page({
 		vertical: false,
 		autoplay: true,
 		circular: true,
-		interval: 2000,
+		interval: 5000,
 		duration: 500,
 		previousMargin: 0,
 		nextMargin: 0,
@@ -101,6 +101,7 @@ Page({
 			const callback = (res) => {
 				self.getMessageData();
 				self.getUserInfoData()
+				self.getShareUserData(scene)
 			};
 			token.getUserInfo({
 				data: {}
@@ -122,6 +123,37 @@ Page({
 	onUnload: function() {
 		const self = this;
 		clearInterval(self.data.intervalOne);
+	},
+	
+	ZhanTing() {
+		const self = this;
+		self.data.autoplay = !self.data.autoplay
+		self.setData({
+			autoplay:self.data.autoplay
+		})
+	},
+	
+	getShareUserData(parent_no){
+	  const self = this;
+	  const postData = {};
+	  postData.token = wx.getStorageSync('token');
+	  postData.searchItem = {
+		  user_no:parent_no,
+		  //user_type:0
+	  }
+	  const callback = (res)=>{
+	    if(res.solely_code==100000){
+	      if(res.info.data.length>0){
+			self.setData({
+				web_shareUser:res.info.data[0],
+			});
+	      }
+	    }else{
+	      api.showToast('网络故障','none')
+	    }
+	    wx.hideLoading();
+	  };
+	  api.commonUserGet(postData,callback);   
 	},
 	
 	getUserInfoData(){
@@ -277,7 +309,14 @@ Page({
 		const callback = (res) => {
 			if (res.info.data.length > 0) {
 				self.data.sliderData.push.apply(self.data.sliderData, res.info.data)
+				for (var i = 0; i < self.data.sliderData.length; i++) {
+					var filename=self.data.sliderData[i].mainImg[0].url;
+					var index1=filename.lastIndexOf(".");
+					var index2=filename.length;
+					self.data.sliderData[i].type = filename.substring(index1,index2)
+				}
 			};
+			console.log(self.data.sliderData)
 			self.setData({
 				web_sliderData: self.data.sliderData,
 			});

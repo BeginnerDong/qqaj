@@ -485,24 +485,61 @@ Page({
 		var reduce = 0;
 		var postage = 0;
 		console.log('productsArray', productsArray)
-
+		var array = [];
 		for (var i = 0; i < productsArray.length; i++) {
 			console.log('productsArray-price', productsArray[i].product)
 			totalPrice += productsArray[i].product.price * productsArray[i].count;
 			firstBalance += productsArray[i].count * productsArray[i].product.firstBalance;
 			secondBalance += productsArray[i].count * productsArray[i].product.secondBalance;
 			postage += productsArray[i].count * productsArray[i].product.postage;
+			
+			console.log('array2',array)
+			if (array.length > 0) {
+				var hasone = false;
+				for (var j = 0; j < array.length; j++) {
+					if (productsArray[i].product.product_no == array[j].menu) {
+						array[j].data.push(productsArray[i]);
+						hasone = true;
+					};
+					console.log('array1',array)
+				};
+				if (!hasone) {
+					array.push({
+						menu: productsArray[i].product.product_no,
+						
+						data: [productsArray[i]],
+					});
+				};
+			} else {
+				array.push({
+					menu: productsArray[i].product.product_no,
+					
+					data: [productsArray[i]],
+				})
+				
+			};
 		};
-		console.log('postage', postage)
+		var zong = 0;
+		console.log('array',array)
+		for (var i = 0; i < array.length; i++) {
+			for (var j = 0; j < array[i].data.length; j++) {
+				zong += array[i].data[j].product.price*array[i].data[j].count
+				if(zong>parseFloat(array[i].data[j].product.product.standard)){
+					reduce += parseFloat(array[i].data[j].product.product.reduce)
+					console.log('reduce',reduce)
+				}
+			}
+		};
+		/* console.log('postage', postage)
 		if (parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].standard) < totalPrice) {
 			reduce = parseFloat(wx.getStorageSync('info').thirdApp.custom_rule[0].reduce)
-		};
+		}; */
+		console.log('reduce1',reduce)
 		self.data.reduce = reduce;
 		self.data.postage = postage;
 		console.log('totalPrice', totalPrice)
 		self.data.realTotalPrice = totalPrice - reduce + postage;
-		self.data.secondBalance = secondBalance - reduce + postage;
-		self.data.firstBalance = firstBalance - reduce + postage;
+		
 		console.log(self.data.couponData)
 		totalPrice = totalPrice - reduce + postage;
 		if (self.data.couponData.type == 3) {
@@ -519,7 +556,8 @@ Page({
 			totalPrice = totalPrice - totalPrice * self.data.couponData.discount / 10;
 
 		};
-
+		self.data.secondBalance = parseFloat(parseFloat(secondBalance)-parseFloat(couponPrice)-parseFloat(reduce)).toFixed(2);
+		self.data.firstBalance = parseFloat(parseFloat(firstBalance)-parseFloat(couponPrice)-parseFloat(reduce)).toFixed(2);
 		console.log('self.data.couponData.discount', self.data.couponData.discount / 10)
 
 

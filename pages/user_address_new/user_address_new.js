@@ -51,6 +51,7 @@ Page({
 			self.data.sForm.name = res.info.data[0].name;
 			self.data.region = res.info.data[0].city;
 			self.data.sForm.detail = res.info.data[0].detail;
+			self.data.sForm.city = res.info.data[0].city;
 			self.data.isdefault = res.info.data[0].isdefault;
 			console.log('self.data.isdefault', self.data.isdefault)
 			self.setData({

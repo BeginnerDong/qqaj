@@ -23,7 +23,12 @@ Page({
     self.setData({
      fonts:app.globalData.font
     });
-    self.data.paginate = api.cloneForm(getApp().globalData.paginate);
+    self.data.paginate = {
+        count: 0,
+        currentPage:1,
+        pagesize:15,
+        is_page:true,
+    };
     self.getMainData();
     self.getUserInfoData()
   },

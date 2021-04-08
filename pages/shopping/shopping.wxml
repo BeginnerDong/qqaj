@@ -72,7 +72,7 @@
     </view>
     <view class="navbar_item"   bindtap="intoPathRedirect">
         <view class="nav_img">
-	        <view class="cart_number" bindtap="onCartTap">
+	        <view class="cart_number" bindtap="onCartTap" wx-if="{{web_cartTotalCounts>0}}">
 	            <view class="fiexd-cart {{isShake?'animate':''}}" style="">
 	                <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;">{{web_cartTotalCounts}}</view>
 	            </view>

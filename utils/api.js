@@ -462,7 +462,17 @@ class Api extends Base{
         this.request(allParams);
     }    
 
-
+	commonUserGet(param,callback){
+	    var allParams ={
+	        url:'Common/User/get',
+	        type:'post',
+	        data:param,
+	        sCallback: function(data) {
+	            callback && callback(data);
+	        }
+	    };
+	    this.request(allParams);
+	}   
     userDelete(param,callback){
         var allParams ={
             url:'Base/User/delete',

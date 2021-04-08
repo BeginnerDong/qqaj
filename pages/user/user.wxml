@@ -15,7 +15,7 @@
                 </view>
             </view>
          </view>
-        <view class="banner_right flex">
+        <view class="banner_right flex" wx:if="{{web_userData.level>0}}">
             <view  style="width:100%;text-align: center;">
                 <view class="font32 color1" style="width:100%;text-align: center;">{{web_userData.balance?web_userData.balance:'网络故障'}}</view>
                 <view class="font28 color1" style="width:100%;text-align: center;">佣金</view>
@@ -159,7 +159,7 @@
     
    
 
-    <view class="user_infor flexRowBetween w710" bindtap="checkLogin" data-path="/pages/login/login" style="margin-top: 20rpx;">
+    <view class="user_infor flexRowBetween w710" wx:if="{{web_userData.level>0}}" bindtap="checkLogin" data-path="/pages/login/login" style="margin-top: 20rpx;">
         <view class="user_left flexRowBetween">
             <image src="/images/user_icon12.png"></image>
             <text>我是管理员</text>
@@ -188,7 +188,7 @@
     </view>
     <view class="navbar_item"   bindtap="intoPathRedi" data-path="/pages/shopping/shopping">
         <view class="nav_img">
-			<view class="cart_number">
+			<view class="cart_number" wx-if="{{web_cartTotalCounts>0}}">
 			    <view class="fiexd-cart">
 			        <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;">{{web_cartTotalCounts}}</view>
 			    </view>

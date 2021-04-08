@@ -71,18 +71,18 @@
 				<view class="tlt_left1 tlt_right color" wx:if="{{item.order_step=='2'}}">已取消</view>
 	            <view class="tlt_left1 tlt_right color" wx:if="{{item.pay_status == '1'&&item.order_step=='0'&&item.transport_status=='1'&&item.passage2.length==0}}">物流配送中</view>
 	        </view>
-			<view class="order_tlt w710 flexRowBetween"  wx:if="{{item.passage2.length==0&&item.transport_status=='1'}}">
-			    <view class="tlt_left">收货地址:{{item.snap_address.city+item.snap_address.detail}}</view>
+			<view class="order_tlt w710 flexRowBetween"  wx:if="{{item.passage2.length==0&&item.snap_address.city}}">
+			    <view class="tlt_left" style="width: 100%;">收货地址:{{item.snap_address.city+item.snap_address.detail}}</view>
 			</view>
-			<view class="order_tlt w710 flexRowBetween"  wx:if="{{item.passage2}}">
+			<view class="order_tlt w710 flexRowBetween"  wx:if="{{item.passage2.length!=0}}">
 			    <view style="font-size:32rpx;color:#ff0000">取货码:{{item.passage2}}</view>
 			</view>
 			<view class="order_tlt w710 flexRowBetween" style="height: auto;" wx:if="{{item.snap_address.message&&item.snap_address.message!=''}}">
 			    <view style="font-size:32rpx;color:#ff0000" >备注信息: {{item.snap_address.message}}</view>
 			</view>
-			<view class="order_tlt w710 flexRowBetween" style="height: auto;" wx:if="{{item.passage1&&item.passage1!=''}}">
+			<!-- <view class="order_tlt w710 flexRowBetween" style="height: auto;" wx:if="{{item.passage1&&item.passage1!=''}}">
 			    <view style="font-size:32rpx;color:#ff0000" >备注信息: {{item.passage1}}</view>
-			</view>
+			</view> -->
 	        <block wx:for="{{web_mainData[index].products}}" wx:for-item="c_item" wx:key="id">
 	            <view class="product_box w710 flexRowBetween same_store">
 	                <view class="product_left">
@@ -95,7 +95,7 @@
 	                        <view class="font28 color6 avoidOverflow">{{c_item.snap_product.description}}</view>
 	                        <view class="font30 color6  flex" style="height:50%;">
 	                            <view class="product_number">X{{c_item.count}}</view>
-	                            <view class="product_price color">¥{{c_item.snap_product.price}}</view>
+	                            <view class="product_price color">¥{{item.price}}</view>
 	                        </view>
 	                    </view>
 	                        <view class="comment_order font24 color">

@@ -1,307 +1,327 @@
 {
-	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"autoAudits": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"compileHotReLoad": false,
-		"scopeDataCheck": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.2.2",
-	"appid": "wxb982c1855d613157",
-	"projectname": "%E5%B7%A7%E5%B7%A7%E7%88%B1%E5%AE%B6",
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": 22,
-			"list": [
-				{
-					"id": 0,
-					"name": "index",
-					"pathName": "pages/index/index",
-					"query": "scene=UB15702912423561"
-				},
-				{
-					"id": 1,
-					"name": "待收货",
-					"pathName": "pages/waitGoods/waitGoods",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "购物车",
-					"pathName": "pages/shopping/shopping",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/user/user",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "订单评价",
-					"pathName": "pages/user_order_comment/user_order_comment",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "取货码",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "111",
-					"pathName": "pages/user_order/user_order",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的优惠卷",
-					"pathName": "pages/user_discount/user_discount",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "确认订单",
-					"pathName": "pages/order_confirm/order_confirm",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "111",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": ""
-				},
-				{
-					"id": 10,
-					"name": "111",
-					"pathName": "pages/detail/detail",
-					"query": "product_id=2&user_no=UB15912026237530&group_no=G9136586"
-				},
-				{
-					"id": -1,
-					"name": "自提",
-					"pathName": "pages/order_get/order_get",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "kuaidi ",
-					"pathName": "pages/order_delivery/order_delivery",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "优惠券",
-					"pathName": "pages/discount/discount",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "我的消息",
-					"pathName": "pages/user_news/user_news",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "取货",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": ""
-				},
-				{
-					"id": 17,
-					"name": "取货吗",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "订单",
-					"pathName": "pages/user_order/user_order",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "收获",
-					"pathName": "pages/waitGoods/waitGoods",
-					"query": ""
-				},
-				{
-					"id": 19,
-					"name": "订单",
-					"pathName": "pages/order_confirm/order_confirm",
-					"query": "id=105",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "11",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "1111",
-					"pathName": "pages/order_get/order_get",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user_order_code/user_order_code",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order_get/order_get",
-					"pathName": "pages/order_get/order_get",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 24,
-					"name": "pages/detail/detail",
-					"pathName": "pages/detail/detail",
-					"query": "id=1027",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user-aboutUS/user-aboutUS",
-					"pathName": "pages/user-aboutUS/user-aboutUS",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user_order/user_order",
-					"pathName": "pages/user_order/user_order",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user_order_code/user_order_code",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/detail/detail",
-					"pathName": "pages/detail/detail",
-					"query": "id=69",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order_delivery/order_delivery",
-					"pathName": "pages/order_delivery/order_delivery",
-					"query": "id=69",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user-aboutUS/user-aboutUS",
-					"pathName": "pages/user-aboutUS/user-aboutUS",
-					"query": "id=69",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user_order_code/user_order_code",
-					"pathName": "pages/user_order_code/user_order_code",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order_get/order_get",
-					"pathName": "pages/order_get/order_get",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order_delivery/order_delivery",
-					"pathName": "pages/order_delivery/order_delivery",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/user-aboutUS/user-aboutUS",
-					"pathName": "pages/user-aboutUS/user-aboutUS",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order_delivery/order_delivery",
-					"pathName": "pages/order_delivery/order_delivery",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/detail/detail",
-					"pathName": "pages/detail/detail",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.2.2",
+  "appid": "wxb982c1855d613157",
+  "projectname": "%E5%B7%A7%E5%B7%A7%E7%88%B1%E5%AE%B6",
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "index",
+          "pathName": "pages/index/index",
+          "query": "scene=UB15702912423561"
+        },
+        {
+          "id": 1,
+          "name": "待收货",
+          "pathName": "pages/waitGoods/waitGoods",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "购物车",
+          "pathName": "pages/shopping/shopping",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/user/user",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "订单评价",
+          "pathName": "pages/user_order_comment/user_order_comment",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "取货码",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "111",
+          "pathName": "pages/user_order/user_order",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "我的优惠卷",
+          "pathName": "pages/user_discount/user_discount",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "确认订单",
+          "pathName": "pages/order_confirm/order_confirm",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "111",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": ""
+        },
+        {
+          "id": 10,
+          "name": "111",
+          "pathName": "pages/detail/detail",
+          "query": "product_id=2&user_no=UB15912026237530&group_no=G9136586"
+        },
+        {
+          "id": -1,
+          "name": "自提",
+          "pathName": "pages/order_get/order_get",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "kuaidi ",
+          "pathName": "pages/order_delivery/order_delivery",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "优惠券",
+          "pathName": "pages/discount/discount",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "我的消息",
+          "pathName": "pages/user_news/user_news",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "取货",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": ""
+        },
+        {
+          "id": 17,
+          "name": "取货吗",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "订单",
+          "pathName": "pages/user_order/user_order",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "收获",
+          "pathName": "pages/waitGoods/waitGoods",
+          "query": ""
+        },
+        {
+          "id": 19,
+          "name": "订单",
+          "pathName": "pages/order_confirm/order_confirm",
+          "query": "id=105",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "11",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "1111",
+          "pathName": "pages/order_get/order_get",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user_order_code/user_order_code",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order_get/order_get",
+          "pathName": "pages/order_get/order_get",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 24,
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "id=1027",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user-aboutUS/user-aboutUS",
+          "pathName": "pages/user-aboutUS/user-aboutUS",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user_order/user_order",
+          "pathName": "pages/user_order/user_order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user_order_code/user_order_code",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "id=69",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order_delivery/order_delivery",
+          "pathName": "pages/order_delivery/order_delivery",
+          "query": "id=69",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user-aboutUS/user-aboutUS",
+          "pathName": "pages/user-aboutUS/user-aboutUS",
+          "query": "id=69",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user_order_code/user_order_code",
+          "pathName": "pages/user_order_code/user_order_code",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order_get/order_get",
+          "pathName": "pages/order_get/order_get",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order_delivery/order_delivery",
+          "pathName": "pages/order_delivery/order_delivery",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/user-aboutUS/user-aboutUS",
+          "pathName": "pages/user-aboutUS/user-aboutUS",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order_delivery/order_delivery",
+          "pathName": "pages/order_delivery/order_delivery",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 38,
+          "name": "pages/detail/detail",
+          "pathName": "pages/detail/detail",
+          "query": "id=1599&user_no=UC01624644518560",
+          "scene": null
+        },
+        {
+          "id": 39,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "parent_no=UC01624644518560",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

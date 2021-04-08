@@ -38,7 +38,7 @@
 							<view class="font30 color6  flex" style="height:50%;">
 								<view class="color" style="width: 40%;">¥{{c_item.snap_product.price}}</view>
 								<view class="product_number">X{{c_item.count}}</view>
-								<view class="product_price color">¥{{c_item.snap_product.price*c_item.count}}</view>
+								<view class="product_price color">¥{{item.price}}</view>
 							</view>
 						</view>
 					</view>

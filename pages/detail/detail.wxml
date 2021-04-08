@@ -9,7 +9,9 @@
         interval="{{interval}}" duration="{{duration}}" previous-margin="{{previousMargin}}px" next-margin="{{nextMargin}}px">
         <block wx:for="{{web_mainData.bannerImg}}" wx:index="{{index}}">
           <swiper-item>
-            <image src="{{item.url}}"></image>
+            <image src="{{item.url}}" wx-if="{{item.type!='.mp4'}}"></image>
+			<video wx-else style="height: 600rpx;width: 100%;" bindtap="ZhanTing" id="myVideo" loop  show-play-btn controls  objectFit="cover"
+			 src="{{item.url}}"></video>
           </swiper-item>
         </block>
       </swiper>
@@ -82,7 +84,7 @@
 			{{web_mainData.passage1}}
 		</view>	
 	</view>
-	<view class="choose flexRowBetween" style="border: none;padding: 0 30rpx;line-height: 50rpx;">
+	<view class="choose flexRowBetween" style="padding: 0 30rpx;line-height: 50rpx;">
 		<view class="choose_left  font28" style="width:100%;overflow:hidden;color: #222;">
 			{{web_mainData.passage2}}
 		</view>
@@ -95,6 +97,21 @@
 			评价
 		</view>
 	</view> -->
+	<view style="border-bottom: solid 1px #f3c6c9;background-color: #fff;">
+		<view style="display: flex;align-items: center;padding: 20rpx 30rpx;justify-content: space-between;">
+			<view style="display: flex;align-items: center;">
+				<image src="../../images/logo.jpg" style="width: 80rpx;height: 80rpx;"></image>
+				<view style="padding-left: 20rpx;">
+					<!-- <view style="font-weight: bold;font-size: 15px">巧巧爱家</view> -->
+					<view style="font-weight: bold;font-size: 15px" wx-if="{{web_shareUser.nickname&&web_shareUser.nickname!=''}}">{{web_shareUser.nickname}}的店</view>
+					<view style="font-weight: bold;font-size: 15px;opacity: 0;" wx-if="{{!web_shareUser.nickname}}">巧巧爱家</view>
+				</view>
+			</view>
+			
+			<view class="tagL" bindtap="intoPath" data-path="/pages/index/index">进店逛逛</view>
+		</view>
+		
+	</view>
 	<view class="detail_show">
 		<view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
 			<view class="content ql-editor" >
@@ -133,18 +150,25 @@
 </view>
 <view id="buy">
 	<view class="buy_click">
-		<button class="consult collect" bindtap="intoPath" data-path="/pages/index/index">
-			<image src="/images/icon.png"></image>
-			<view class="text1">首页</view>
+		<button class="consult collect" bindtap="intoPathRedi" data-path="/pages/user/user" style="padding: 0;margin: 0;">
+			<image src="/images/navbar4.png"></image>
+			<view class="text1">我的</view>
 		</button>
-		<button class="consult" bindtap="onShareAppMessage"  open-type="share" style="line-height:normal">
+		<button class="consult" bindtap="onShareAppMessage"  open-type="share" style="line-height:normal;padding: 0;margin: 0;">
 			<image src="/images/share.png"></image>
 			<view class="text1">分享</view>
 		</button>
-		<!-- <button class="consult" style="line-height:normal">
-			<image src="/images/share.png"></image>
+		<button class="consult" bindtap="intoPathRedi" data-path="/pages/shopping/shopping" style="line-height:normal;width: auto;padding: 0;margin: 0;">
+			<view class="nav_img">
+				<view class="cart_number" wx-if="{{web_cartTotalCounts>0}}">
+				    <view class="fiexd-cart">
+				        <view class="bg" style="color:#fff;font-size:16rpx;border-radius:50%;">{{web_cartTotalCounts}}</view>
+				    </view>
+				</view>
+			   <image src="/images/navbar3.png"></image>
+			</view>
 			<view class="text1">购物车</view>
-		</button> -->
+		</button>
 		<view class="go_buy flexRowBetween" wx:if="{{web_skuData.start_time==0||web_skuData.start_time<web_nowTiem}}">
 			<button class="shoppingCart color1" style="background: #FACA2E;" bindgetuserinfo="selectModel" data-type="addCart"  open-type="getUserInfo" wx:if="{{web_skuData.is_group=='0'}}">
 				加入购物车
@@ -176,9 +200,9 @@
 	</view>
 </view>
 
-<view style="position: fixed;bottom: 300rpx;right: 0;" bindtap="intoPathRedi" data-path="/pages/shopping/shopping">
+<!-- <view style="position: fixed;bottom: 300rpx;right: 0;" bindtap="intoPathRedi" data-path="/pages/shopping/shopping">
 	<image src="/images/car.png" style="height: 100rpx;width: 100rpx;"></image>
-</view>
+</view> -->
 
 <!-- 规格 -->
 <view id="choose" style="{{isShow?'bottom:0;height:80%;':'bottom:-100%'}}" class="tcBox">

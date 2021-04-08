@@ -48,6 +48,16 @@ import {
 
 		onLoad(options) {
 			const self = this;
+			var cartTotalCounts = 0;
+			self.data.cartData = api.jsonToArray(wx.getStorageSync('cartData'), 'unshift');
+			for (var i = 0; i < self.data.cartData.length; i++) {
+				if (self.data.cartData[i].isSelect) {
+					cartTotalCounts += self.data.cartData[i].count;
+				}
+			};
+			self.setData({
+				web_cartTotalCounts: cartTotalCounts,
+			});
 			console.log(self.data.skuData);
 			if (options.category_id && options.category_id != 'undefined') {
 				self.data.category_id = options.category_id
@@ -63,7 +73,7 @@ import {
 				web_transport:self.data.transport,
 				fonts: app.globalData.font,
 				web_count: self.data.count,
-
+				web_shareUser:{},
 			});
 			if (options.id) {
 				self.data.id = options.id
@@ -104,13 +114,21 @@ import {
 					parent_no: self.data.user_no
 				});
 				const callback = (res) => {
-					//self.getMessageData();
+					self.getShareUserData();
 				};
 				token.getUserInfo({
 					data: {}
 				}, callback);
 			};
 			console.log(self.data.user_no)
+		},
+		
+		ZhanTing() {
+			const self = this;
+			self.data.autoplay = !self.data.autoplay
+			self.setData({
+				autoplay:self.data.autoplay
+			})
 		},
 		
 		getUserInfoData(){
@@ -130,6 +148,29 @@ import {
 		  };
 		  api.userInfoGet(postData,callback);   
 		},
+		
+		getShareUserData(){
+		  const self = this;
+		  const postData = {};
+		  postData.token = wx.getStorageSync('token');
+		  postData.searchItem = {
+			  user_no:self.data.user_no,
+			  //user_type:0
+		  }
+		  const callback = (res)=>{
+		    if(res.solely_code==100000){
+		      if(res.info.data.length>0){
+				self.setData({
+					web_shareUser:res.info.data[0],
+				});
+		      }
+		    }else{
+		      api.showToast('网络故障','none')
+		    }
+		    wx.hideLoading();
+		  };
+		  api.commonUserGet(postData,callback);   
+		},
 
 		onShareAppMessage(res) {
 			const self = this;
@@ -147,7 +188,7 @@ import {
 				self.data.shareBtn = false;
 			}
 			return {
-				title: '['+wx.getStorageSync('info').nickname+'推荐]'+self.data.skuData.title,
+				title: self.data.skuData.title,
 				path: self.data.userData.level>0?'pages/detail/detail?id=' + self.data.id + '&&user_no=' + wx.getStorageSync('info').user_no:'pages/detail/detail?id=' + self.data.id,
 				success: function(res) {
 					console.log(res);
@@ -252,7 +293,12 @@ import {
 						self.data.skuIdArray.push(self.data.mainData.sku[i].id); //为了抓所有Sku的评论
 						self.data.choose_sku_item.push.apply(self.data.choose_sku_item, self.data.mainData.sku[i].sku_item);
 					};
-
+					for (var i = 0; i < self.data.mainData.length; i++) {
+						var filename=self.data.sliderData[i].bannerImg[0].url;
+						var index1=filename.lastIndexOf(".");
+						var index2=filename.length;
+						self.data.mainData[i].bannerImg[0].type = filename.substring(index1,index2)
+					}
 					self.data.sku_item = self.data.skuData.sku_item;
 					self.data.mainData.content = api.wxParseReturn(res.info.data[0].content).nodes;
 					self.data.complete_api.push('getMainData');
@@ -503,9 +549,11 @@ import {
 		bindManual(e) {
 			const self = this;
 			var count = e.detail.value;
-			self.setData({
+			self.data.count = count;
+			self.setData({ 
 				web_count: count
 			});
+			self.countTotalPrice()
 		},
 
 
@@ -556,11 +604,28 @@ import {
 				console.log(self.data.skuData);
 				if (self.data.skuData.id != '' && self.data.skuData.id != undefined) {
 					if(self.data.transport==-1){
-						api.showToast('请选择收货方式', 'none')
+						wx.showModal({
+							title:'提示',
+							content:'请选择收货方式',
+							showCancel:false,
+							confirmColor:'#e50112'
+						})
+						return
 					}else{
 						self.data.skuData.transport = self.data.transport;
 						api.footOne(self.data.skuData, 'id', 100, 'cartData');
 						api.showToast('已加入购物车啦', 'none')
+						var cartTotalCounts = 0;
+						self.data.cartData = api.jsonToArray(wx.getStorageSync('cartData'), 'unshift');
+						console.log('self.data.cartData ',self.data.cartData )
+						for (var i = 0; i < self.data.cartData.length; i++) {
+							if (self.data.cartData[i].isSelect) {
+								cartTotalCounts += self.data.cartData[i].count;
+							}
+						};
+						self.setData({
+							web_cartTotalCounts: cartTotalCounts,
+						});
 					}
 				} else {
 					api.showToast('请完善信息', 'none')
@@ -584,7 +649,12 @@ import {
 				if (self.data.skuData.id != '' && self.data.skuData.id != undefined) {
 					wx.setStorageSync('payPro', skuDatas);
 					if(self.data.transport==-1){
-						api.showToast('请选择收货方式', 'none')
+						wx.showModal({
+							title:'提示',
+							content:'请选择收货方式',
+							showCancel:false,
+							confirmColor:'#e50112'
+						})
 					}else if(self.data.transport==1){
 						api.pathTo('/pages/order_delivery/order_delivery?group_no=' + self.data.scene + '&&user_no=' + self.data.user_no,
 							'nav')
